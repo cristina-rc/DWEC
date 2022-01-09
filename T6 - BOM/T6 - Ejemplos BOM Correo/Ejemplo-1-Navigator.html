@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo-1-Navigator</title>
+</head>
+<body>
+    <script>
+        //Se recomienda ejecutarlo sobre los navegadores más representativos.
+        //Firefox, Chrome, Edge, ...
+        var i,navi; 
+	    var navi=eval("navigator");	//eval evalúa el parámetro y devuelve el 
+				                    //objeto asociado a la cadena
+
+	    for (i in navi)  { 
+		    document.write("navigator. <b>" +i + "</b>=> <i>" + navi[i] + "</i><br>")
+	    } 
+    </script>
+</body>
+</html>

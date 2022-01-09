@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usando Location</title>
+</head>
+<body>
+    <div id="cabecera"><h2>Estudiando los componentes BOM</h2>
+    <h3>Ejemplos JavaScript</h3></div>
+    <div style="color:blue; margin:20px;" id ="pulsador" onclick="ejemplo()"><a href="#"> Probar</a></div>
+    <script>
+        function ejemplo() {
+            msg = '';
+            var moneda = extraerParametroUrl('moneda');
+            if (moneda) {alert ('El valor del parámetro moneda en la url es: '+moneda)}
+            else {alert ('No se recibe moneda en la url'); }
+        }
+        function extraerParametroUrl( nombreParametro ){
+            var regexS = "[\\?&]"+nombreParametro+"=([^&#]*)";
+            var regex = new RegExp ( regexS );
+            var tmpURL = window.location.href;
+            var results = regex.exec( tmpURL );
+            if( results == null ) { return "";} else {return results[1];}
+        }
+</script>
+</body>
+</html>

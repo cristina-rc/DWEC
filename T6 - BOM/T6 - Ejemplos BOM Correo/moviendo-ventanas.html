@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Moviendo ventanas </title>
+</head>
+<body>
+<form name="FORMULARIO"> 
+<p><b>Coordenada X:</b><input type="text" name="X" size="10"></p>
+<p><b>Coordenada Y:</b> <input type="text" name="Y" size="10"></p>
+<input type="button" value="Mover ventana" name="B1" 
+	onclick="MoverVentana()"> 
+<input type="button" value="Redimensionar" name="B2" 
+	onclick="Redimensionar()">
+</form> 
+
+
+<SCRIPT LANGUAGE="JavaScript">
+//El código de las funciones es: 
+//Este código no funcionará como se espera
+//si esta ventana no es abierta con el método open.
+//consultar https://developer.mozilla.org/en-US/docs/Web/API/Window/moveTo
+var x,y; 
+function MoverVentana() { 
+
+x=document.FORMULARIO[0].value ;
+y=document.FORMULARIO[1].value;
+alert(x);
+alert(y);
+if(typeof window.ventana !== 'undefined'){
+                ventana.moveTo(x,y);
+            }else{
+                ventana=window.open("","",'width= 340,height=150');
+                ventana.moveTo(x,y);
+            }  
+
+ 
+}
+
+function Redimensionar() { 
+
+x=document.FORMULARIO[0].value;
+y=document.FORMULARIO[1].value;
+alert(x);
+alert(y);
+if(typeof window.ventana !== 'undefined'){
+                ventana.resizeTo(x,y);
+            }else{
+                ventana=window.open("","",'width= 340,height=150');
+                ventana.resizeTo(x,y);
+            }  
+ 
+}
+</SCRIPT>
+</body>
+</html> 

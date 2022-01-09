@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio del BOM -- Ej.0</title>
+    <script>
+        function ver(dato){ 
+			document.write( dato ); 
+		}
+    </script>
+</head>
+<body>
+    <script>
+        ver("TITULO DEL DOCUMENTO: <BR>"); 
+		ver(document.title ); ver(" ==>document.title<BR>");
+		ver(document["title"]); ver(" ==>document[\"title\"]<BR>");
+		ver(this.document.title); ver(" ==>this.document.title<BR>");
+		ver("URL del DOCUMENTO: <BR>"); ver(window.location);
+    </script>
+</body>
+</html>

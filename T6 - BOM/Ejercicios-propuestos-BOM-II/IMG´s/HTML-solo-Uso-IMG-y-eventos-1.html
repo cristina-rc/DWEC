@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso IMG y eventos 1</title>
+</head>
+<body>
+    <center> 
+        <table>
+            <tr><td><IMG SRC="on.jpg" NAME="img1" ALT="Departamentos" style="height: 160;width: 130;" onMouseover="imagenOff('img1')"></td><td><IMG SRC="off.jpg" NAME="img2" ALT="Equipo Directivo" style="height: 160;width: 130;" onMouseover="imagenOff('img2')"></td></tr>
+            <tr><td>Mueve <A HREF="departamento.html"  onMouseout="imagenOn('img1')">sobre-esto</A></td><td>Ahora <A HREF="Equipo.html"  onMouseout="imagenOn('img2')" >sobre-aqui</A></td></tr>
+        </table>
+    </center>
+    
+    <script>
+
+        function imagenOff(imagen){
+            document.getElementsByName("img1")[0].src = "f-abajo.jpg";
+            document.getElementsByName("img2")[0].src = "f-dcha.jpg";
+        }
+
+        function imagenOn(imagen){
+            document.getElementsByName(imagen)[0].src = "f-arriba.jpg";
+        }
+
+        
+
+    </script>
+</body>
+</html>

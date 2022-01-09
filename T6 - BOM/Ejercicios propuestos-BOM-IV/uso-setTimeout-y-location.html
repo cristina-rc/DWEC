@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso setTimeOut y Location</title>
+</head>
+<body>
+    <h3>Estamos mejorando nuestra web</h3>
+    <h2>En 5 segundos le vamos a trasladar a página segura</h2>
+    <script>
+        var IDtraslado;
+        IDtraslado=window.setTimeout(cambio,5000);
+        
+        function cambio(){
+            location="https://www.iestetuan.es/cmsj";
+        }
+    </script>
+</body>
+</html>

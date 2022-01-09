@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html> 
+	<head> 
+	<title>OBJETOS -EJEMPLO 2</title>
+	<SCRIPT LANGUAGE="JavaScript">
+	function ver(dato){ 
+		document.write(dato); 
+	} 
+	function objetos() { 
+	ver("<BR><CENTER>"); 
+	ver("Nombre de la primera imagen:"+document.images[0].name+"<BR>");
+	ver("Nombre de la segunda imagen:"+document.images[1].name+"<BR>");
+	ver("Número de imágenes:"+document.images.length+"<BR>"); 
+	ver("Nombre del segundo vínculo:"+document.links[1].name+"<BR>"); 
+	ver("Número de elementos del formulario:"+document.forms[0].elements.length+"<BR>"); 
+	}
+	function vertexto(){ 
+	ver("Contenido del texto:"+document.forms[0][0].value+"<BR>");
+	} 
+	</SCRIPT>
+	</head>
+	<body> 
+	<p align="center"> 
+	<img border="0" src="RM.gif" width="21" height="21" NAME="ALFI1">Alfi1&nbsp;
+	<a href="http://www.mec.es" NAME="MEC"> --MEC-- </a> 
+	<img border="0" src="Alfi3.gif" width="21" height="21" NAME="ALFI3">Alfi3
+	</p> 
+	<p align="center">
+	<a href="http://www.iestetuan.es" NAME="EJEMPLO">Ejemplo 1 </a>&nbsp;&nbsp; 
+	<img border="0" src="Alfi2.gif" width="21" height="21" NAME="ALFI2">Alfi2&nbsp; 
+
+	<center> 
+	<table border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFF99">
+	  <tr> 
+		<td> 
+		<p align="center"><b>FORMULARIO</b><p>
+		<form NAME="FORMULARIO"> 
+		TEXTO<input type="text" name="TEXTO" size="20"> 
+		<input type="button" value="Ver texto" name="BOTON" onclick="vertexto()">
+		</form> 
+		</td>
+	  </tr> 
+	</table>
+	</center> 
+	<script language="JavaScript">
+	objetos(); 
+	</script>
+	</body>
+	</html>

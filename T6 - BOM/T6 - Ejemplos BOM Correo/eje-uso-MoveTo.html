@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>uso control select</title>
+</head>
+<body>
+<center>
+<a>MENÚ DEL DÍA </a>
+<form name="opciones">
+<p><b>ELIGE EL PRIMER PLATO: </b>
+<select size="1" name="PRIMERPLATO"> 
+<option value="" selected>Selecciona primer plato</option>
+<option value="Garbanzos" >Garbanzos</option>
+<option value="Lentejas">Lentejas</option> 
+<option value="Judías Verdes">Judías Verdes</option>
+<option value="Paella">Paella</option> 
+</select></p>
+<p>&nbsp;<b>ELIGE SEGUNDO PLATO :</b>
+<select size="3" name="SEGUNDOPLATO" multiple> 
+<option>Entrecot a la Plancha</option>
+<option>Pescado a la Plancha</option>
+<option>Cochinillo Frito</option> 
+<option selected>Huevos con bacon y chorizo</option>
+</select></p>
+
+<p><b>POSTRE: </b> 
+<input type="radio" name="POSTRE" value="FRUTA" checked >Fruta 
+<input type="radio" name="POSTRE" value="HELADO">Helado
+<input type="radio" name="POSTRE" value="YOGUR">Yogur
+<input type="radio" name="POSTRE" value="OTRO">Otro  
+
+<input type="button" value="Ver Menú" name="VER" onClick="VerSeleccion(this.form)">
+
+<SCRIPT language="JavaScript">
+<!--
+ 
+function VerSeleccion(opciones){ 
+
+var ventana; 
+
+ventana=window.open("","",'width= 340,height=150');
+/*ventana.document.write("<B>HAS ELEGIDO EL SIGUIENTE MENÚ:</B><BR>");
+ventana.document.write("<B>Primer plato: </B>"); 
+
+primero=opciones.PRIMERPLATO.selectedIndex; //obtener selección primer plato
+if (opciones.PRIMERPLATO.options[primero].value == "") { 
+	alert("NO HAS ELEGIDO PRIMER PLATO") //si no elegimos nada 
+}
+
+ventana.document.write(opciones.PRIMERPLATO.options[primero].value +"<BR>");//visualizamos el valor de la opción elegida 
+
+ventana.document.write("<B>Segundo Plato :</B>"); 
+segundo=opciones.SEGUNDOPLATO.selectedIndex; //obtener selección 2° plato
+ventana.document.write(opciones.SEGUNDOPLATO.options[segundo].text +"<BR>");//visualizamos el texto de la opción elegida 
+
+ventana.document.write("<B>Postre :</B>");
+for (i=0; i<opciones.POSTRE.length; i++){
+	if(opciones.POSTRE[i].checked){ 
+		ventana.document.write(opciones.POSTRE[i].value +"<BR>"); 
+	}
+}*/
+ventana.document.write(<html><head><title> Moviendo ventanas </title></head><body><form name="FORMULARIO"><p><b>Coordenada X:</b><input type="text" name="X" size="10"></p><p><b>Coordenada Y:</b> <input type="text" name="Y" size="10"></p><input type="button" value="Mover ventana" name="B1" onclick="MoverVentana()"><input type="button" value="Redimensionar" name="B2" onclick="Redimensionar()"></form><SCRIPT LANGUAGE="JavaScript">//El código de las funciones es://Este código no funcionará como se espera //si esta ventana no es abierta con el método open.//consultar https://developer.mozilla.org/en-US/docs/Web/API/Window/moveTo var x,y; 
+function MoverVentana() { 
+
+x=document.FORMULARIO[0].value ;
+y=document.FORMULARIO[1].value;
+alert(x);
+alert(y);
+
+window.moveTo(x,y); 
+}
+
+function Redimensionar() { 
+
+x=document.FORMULARIO[0].value;
+y=document.FORMULARIO[1].value;
+alert(x);
+alert(y);
+window.resizeTo(x,y); 
+}
+</SCRIPT>
+</body>
+</html> 
+
+ventana.document.close(); //cerramos la escritura en el documento 
+
+} 
+//-->
+</SCRIPT> 
+
+</form>
+</body>
+</html> 

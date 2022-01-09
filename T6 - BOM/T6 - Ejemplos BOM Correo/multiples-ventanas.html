@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Apertura de múltiples ventanas </title>
+</head>
+<body>
+
+<script language="JavaScript">
+function ventana() {
+	var izq = 0;
+	var vert=0;
+	for(var i = 0; i <=4; i++) {
+		//alert(vert);
+		var ventana = window.open("", "", "width=250,height=200,top="+vert+",left="+izq);
+		var texto = "<head><title>Ventana "+i+"</title></head><body><h3>Ventana "+i+"</h3><button onClick=window.close()>cerrar</button></body>";
+		ventana.document.write(texto);
+		izq += 150;
+		vert += 75;
+		ventana = "";
+		//opcion a top y left: ventana.moveTo(izq,vert);
+	}
+}
+</script>
+
+<h1>Apertura de múltiples ventanas</h1>
+<button onClick="ventana()">abre múltiples ventanas</button>
+
+</body>
+</html>

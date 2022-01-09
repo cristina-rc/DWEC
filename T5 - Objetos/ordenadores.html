@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenadores</title>
+</head>
+<body>
+    <form>
+        Marca: <input type="text"><br>
+        Modelo: <input type="number"><br>
+        Memoria RAM: <input type="number"><br>
+        Microprocesador: <input type="text"><br>
+        Gráfica: <input type="text"><br>
+        Portátil: Sí <input type="radio" name="portatil" value="Si">
+        No <input type="radio" name="portatil" value="No"><br>
+
+        <input type="button" value="Añadir" onClick="accion(this.value)"> 
+        <input type="button" value="Consultar" onClick="accion(this.value)"> 
+        <input type="button" value="Eliminar" onClick="accion(this.value)"> 
+        <input type="button" value="Borrar Campos" onClick="accion(this.value)"> <br>
+        
+        <textarea rows="10" columns="20"></textarea>   
+        
+        <h1>IMAGEN TARJETA GRÁFICA</h1>
+        <img src="" id="imagen">
+
+    </form>
+
+    <script>
+        var ordenadores = [];
+        var id = 1;
+
+        var marca = document.getElementsByTagName("input")[0];
+        var modelo = document.getElementsByTagName("input")[1];
+        var memoria = document.getElementsByTagName("input")[2];
+        var microprocesador = document.getElementsByTagName("input")[3];
+        var grafica = document.getElementsByTagName("input")[4];
+        var portatil = document.forms[0].portatil;
+        
+
+        function accion(valor){
+            switch (valor){          
+                case "Añadir": añadir();
+                    break;
+
+                case "Consultar": consultar(); 
+                    break;
+
+                case "Eliminar": eliminar();
+                    break;
+
+                case "Limpiar campos": limpiar();
+                    break;
+            }
+        }
+
+        function Ordenador(id, marca, modelo, memoria, microprocesador, grafica, portatil, imagen){
+            this.id = id;
+            this.marca = marca;
+            this.modelo = modelo; 
+            this.memoria = memoria;
+            this.microprocesador = microprocesador;
+            this.grafica = grafica;
+            this.portatil = portatil;
+            this.imagen = imagen;
+
+            Ordenador.prototype.toString = function(){
+                return "Ordenador: " + this.id + " Marca: " + this.marca + " Modelo: " + this.modelo + " Memoria: " + this.memoria + " Microprocesador: " + this.microprocesador + " Gráfica: " + this.grafica + " Portatil: " + this.portatil;
+            }
+        }
+
+        function añadir(){
+            var ordenador = new Ordenador(id, marca.value, modelo.value, memoria.value, microprocesador.value, grafica.value, portatil.value, "grafica.jpg");
+
+            ordenadores.push(ordenador);
+            alert("Se ha añadido correctamente el ordenador " + ordenador.marca);
+
+            id++;
+
+            limpiar();
+
+            console.log(ordenadores);
+        }
+
+        function consultar(){
+            marcaIntr = marca.value;
+            var libroEncontrado = false;
+
+            for(let ordenador of ordenadores){
+                if(marcaIntr == ordenador.marca){
+
+                    document.getElementsByTagName("textarea")[0].value = ordenador.toString();
+                    document.getElementById("imagen").src = ordenador.imagen;
+
+                    libroEncontrado = true;
+                    break;
+                }
+            }
+
+            if(!libroEncontrado){
+                alert ("El ordenador no ha sido encontrado en la base de datos");
+            }     
+        }      
+
+        function eliminar(){
+            for(let ordenador of ordenadores){
+                if(marcaIntr == ordenador.marca){
+
+
+                    //indice = ordenadores.indexOf(ordenador);
+                    //ordenadores.splice(indice, 1);
+                    ordenadores.splice((ordenador.id)-1, 1);
+
+                    libroEncontrado = true;
+                    alert("Se ha eliminado correctamente el ordenador con id: " + ordenador.id);
+
+                    break;
+                }
+            }
+
+            if(!libroEncontrado){
+                alert ("El ordenador a eliminar no ha sido encontrado en la base de datos");
+            }   
+
+            limpiar();
+        }
+
+        function limpiar(){
+            
+            for(var i=0; i<5; i++){
+                document.getElementsByTagName("input")[i].value = "";
+            }
+
+            document.getElementsByTagName("textarea")[0].value = "";
+        }
+        
+    </script>
+</body>
+</html>

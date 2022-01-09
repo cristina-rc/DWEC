@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <h1>BIBLIOTECA</h1>
+
+        Título: <input type="text"><br>
+        Autor: <input type="text"><br>
+        Editorial: <input type="text"><br>
+        Año Publicación: <input type="text"><br>
+        
+        
+
+        <input type="submit" value="Añadir" onClick="crearLibro()">
+        <input type="submit" value="Consultar" onClick="consultar()">    
+
+    <script>
+
+        var biblioteca = [];
+        var signatura = 1;
+
+        function crearLibro(){
+
+            //document.forms[0].elements[1-4].value;
+
+            var titulo = document.getElementsByTagName("input")[0].value;
+            var autor = document.getElementsByTagName("input")[1].value;
+            var editorial = document.getElementsByTagName("input")[2].value;
+            var anoPubli = document.getElementsByTagName("input")[3].value;
+
+            var libro = new Libro(titulo, autor, editorial, anoPubli, signatura);
+            signatura++;
+
+            biblioteca.push(libro);
+
+            alert("Se ha almacenado correctamente el libro: " + libro.titulo);
+            
+            document.getElementsByTagName("input")[0].value = "";
+            document.getElementsByTagName("input")[1].value = "";
+            document.getElementsByTagName("input")[2].value = "";
+            document.getElementsByTagName("input")[3].value = "";
+        }
+
+        function Libro(titulo, autor, editorial, anoPubli, signatura){
+                this.titulo = titulo; 
+                this.autor = autor;
+                this.editorial = editorial;
+                this.anoPubli = anoPubli;
+                this.signatura = signatura;
+        }
+
+        function consultar(){
+            var tituloIntr = document.getElementsByTagName("input")[0].value;
+            var libroEncontrado = false;
+
+            for(let libro of biblioteca){
+                if(libro.titulo == tituloIntr){
+                    
+                    document.getElementsByTagName("input")[0].value = libro.titulo;
+                    document.getElementsByTagName("input")[1].value = libro.autor;
+                    document.getElementsByTagName("input")[2].value = libro.editorial;
+                    document.getElementsByTagName("input")[3].value = libro.anoPubli;
+                    document.getElementsByTagName("input")[4].value = libro.signatura;
+                    
+                    libroEncontrado = true;
+                    break;
+                }
+            }
+
+            if(!libroEncontrado){
+                alert ("El libro no ha sido encontrado en la base de datos");
+            }
+        }
+    </script>    
+</body>
+</html>

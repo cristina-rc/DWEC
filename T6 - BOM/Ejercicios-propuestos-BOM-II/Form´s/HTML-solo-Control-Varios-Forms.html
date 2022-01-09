@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo-varios-forms</title>
+</head>
+<body>
+    <p align="center"><b>VER PROPIEDADES DEL DOCUMENTO</b></p>
+    <center>
+        <a href="Ejemplo-1-uso-document.html" name="externo1">Ver ejemplo apertura ventanas</a>
+        <A href="#Formulario2" name="interno0">Ir a Formulario 2</A>
+        <a href="#caracteristicas" name="interno1">Ir a características</a>
+    <hr>
+     <form action="" name="Formulario1">
+        <table name="t0-1">
+            <tr><td><img src="cascada.jpg" alt="" id="img0-1" style="height: 40mm;width: 40mm;"></td><td><label for="">Nombre</label><input type="textbox" id="nombre"><br><br><br><label for="">Apellidos</label><input type="textbox" id="apellidos"></td></tr>
+            <tr><td><input type="button" value="Aceptar" id="bton-aceptar-01"><br></td><td><input type="button" value="cancelar" id="bton-cancel-01"><br></td></tr>
+        </table>
+     </form>
+     <hr>   
+     <form action="" name="Formulario2">
+        <table>
+            <tr><td><img src="playa.jpg" alt="" id="img0-2" style="height: 40mm;width: 40mm;"></td><td><label for="">Nombre</label><input type="textbox" id="nombre"><br><br><br><label for="">Apellidos</label><input type="textbox" id="apellidos"></td></tr>
+            <tr><td><input type="button" value="Aceptar" id="bton-aceptar-02"><br></td><td><input type="button" value="cancelar" id="bton-aceptar-02"><br></td></tr>
+        </table>
+     </form>
+    
+    <hr>
+    <A NAME="caracteristicas" name="interno2"></A> 
+    <b><center>CARACTERISTICAS DEL DOCUMENTO</b><br>
+    </center>
+
+    <script>
+        document.write("El número de imagenes es: " + document.images.length + "<br>");
+        
+        for (i = 0; i < document.anchors.length; i++) {
+            document.write(document.anchors[i].name + " ");
+        }
+
+        document.write("<br>El número de enlaces externos es: " + document.links.length + "<br>");
+        
+        document.write ("<br>El número de formularios es: " + document.forms.length)
+        document.write("<br>La fecha de la última modificación es: " + document.lastModified);
+        
+        for (i = 0; i < document.forms.length; i++) {
+            for(j=0; j<document.forms[i].length; j++){
+                texto = (document.forms[i].element);
+            }
+        }   
+    
+    
+    </script>
+        
+</body>
+</html>

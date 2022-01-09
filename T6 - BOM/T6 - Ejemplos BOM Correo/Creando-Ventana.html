@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creando una ventana nueva</title>
+</head>
+<body>
+    <p align="center"><b>CREA UN NUEVO DOCUMENTO HTML</b></p>
+    <center> 
+    <table border="0" cellpadding="0" cellspacing="0" height="108">
+        <tr> 
+            <td height="87" align="center"> 
+            <form name="FORMULARIO" > 
+                <input type="button" value="Documento con colores" name="B1" onclick="mostrar(1); pintapagina(1);"> 
+                <input type="button" value="Valores por defecto" name="B2" onclick= "mostrar(0); pintapagina(0);"><br> 
+                <textarea rows="4" name="area" cols="20" READONLY WRAP>Haz clic en uno de los botones</textarea> 
+            </form>
+            </td>
+        </tr> 
+    </table> 
+    </center> 
+    <script>
+        var coloresdocu = new Array //array con los textos que se visualizan en el area
+        coloresdocu[0] = "Fondo: Blanco, Color Texto: Negro, Link: Azul , Link visitados: Rojo"; 
+        coloresdocu[1] = "Fondo: Amarillo, Color Texto: Azul, Link: Rojo, Link visitados: Rosa"; 
+
+        var ventana; 
+
+        function pintapagina(x){ //esta función escribe el texto del nuevo docum. 
+            var texto=""; 
+            ventana=window.open("","","height=150, width=300") //ventana que se abre
+            texto ="<HTML><HEAD><TITLE>PAGINA QUE CAMBIA DE COLORES</TITLE> </HEAD><BODY "; 
+            if (x==1){ 
+	            texto=texto + Colores();
+            } else { 
+	            texto=texto + SinColores();
+            } 
+            texto=texto + "> <p>ESTA ES MI PAGINA WEB </p>"; 
+            texto=texto + "<p><a href='Ejemplo1-uso-document.html'> Visita otro ejemplo</a></p>"
+            texto=texto + "</BODY> </HTML>" 
+
+
+            //ventana.document.open(); //abre la escritura sobre el documento
+            ventana.document.write(texto);//escribe en el documento 
+            ventana.focus(); //muestra la ventana pequeña en primer plano
+            //ventana.document.close(); //cierra la escritura del documento 
+        }
+        function SinColores(){ //devuelve las carac. Para el doc sin colores 
+	        return "BGCOLOR='#ffffff' VLINK='#ff0000' LINK='#0000ff' TEXT='#000000'";
+        } 
+        
+        function Colores(){ //devuelve las carac. Para el doc con colores 
+	        return "BGCOLOR='#ffff00' VLINK='#ff00ff' LINK='#ff0000' TEXT='#0000ff'";
+        } 
+
+        function mostrar(i){ //muestra el texto en el area 
+	        document.FORMULARIO.area.value = coloresdocu[i];
+        } 
+    </script> 
+</body>
+</html>

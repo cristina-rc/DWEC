@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head><title>Controlando elementos de un formulario</title><meta charset="utf-8">
+<style type="text/css"> body {margin-left:30px; font-family: sans-serif;} h4 {margin:0;} div {float:left;}
+.estiloForm, #encuadraImagen, #datos {background-color: #f3f3f3; border: solid 2px black; margin-left:10px; width:300px; }
+.estiloForm { width: 330px; padding:10px;} #datos {margin-top: 20px; height:226px; padding:10px;}
+#encuadraImagen {width:100px; height:100px;   text-align:center;}
+.estiloForm label {display: block; width: 120px; float: left; text-align:right; margin-bottom: 35px; padding-right: 20px;}
+br {clear: left;} input[type="submit"], input[type="reset"] {margin:25px 5px 10px 5px;}
+</style>
+
+</head>
+<body><h2>Controlando Elementos</h2><h3>Examen JavaScript</h3>
+    <div class="estiloForm">
+    <form name ="formularioContacto" method="get" action="#">
+        <label>Tratamiento</label>
+        <input type="radio" name="tratamiento" id="tratarSr" value="Sr."/>Sr.
+        <input type="radio" name="tratamiento" id ="tratarSra" value="Sra."/>Sra.<br/>
+        <label>Nombre</label><input id="nombre" name="nombre" type="text"/><br/>
+        <label>Apellidos</label><input id="apellidos" name="apellidos" type="text"/><br/>
+        <label>Direccion</label><input id="direccion1" name="direccion1" type="text"/><br/>
+        <label>Ciudad</label><select id="ciudad" name="ciudad">
+            <option value="">Elija opcion</option>
+            <option value="Madrid">Madrid (ES)</option>
+            <option value="Berlin">Berlin (D)</option>
+            <option value="Paris">Paris (F)</option>
+        </select><br/>
+        <label>Preferencias</label><input name="Libros" id ='libros' type="checkbox" value='Libros'/>Libros
+        <input name="Peliculas"  id='peliculas' type="checkbox" value='Peliculas'/>Peliculas
+        <input type="button" value="Enviar" onclick='informe()'/> <input type="reset" value="Cancelar"/>
+    </div>
+    <div style="float:left;">
+    <div id="encuadraImagen"><img id='rostro' src='' alt="?" width="80px"></div><br/>
+    <div id="datos" style="float:left;"><h4> Datos introducidos: </h4><textarea id='datosfinales' cols='35' rows='12'></textarea></div>
+    </form>
+    </div>
+
+    <script>
+
+        var datos = "";
+        var textarea = document.getElementsByTagName("textarea")[0];
+
+        function informe(){
+            for (i=0; i<formularioContacto.tratamiento.length; i++){
+                if(formularioContacto.tratamiento[i].checked){
+                    datos += "Tratamiento: " + formularioContacto.tratamiento[i].value + "\n";
+
+                    if(formularioContacto.tratamiento[i].value == "Sr."){
+                        document.getElementById("rostro").src = "señor.jpg";
+                    }else if(formularioContacto.tratamiento[i].value == "Sra."){
+                        document.getElementById("rostro").src = "señora.jpg";
+                    }
+                }
+            }
+
+            datos += "Nombre: " + document.forms[0].nombre.value + "\n";
+            datos += "Apellidos: " + document.formularioContacto.apellidos.value + "\n";
+            datos += "Dirección: " + document.formularioContacto.elements[4].value + "\n";
+            
+            datos += "Ciudad: " + formularioContacto.ciudad.options[formularioContacto.ciudad.selectedIndex].text + "\n";
+            //formularioContacto.ciudad.options[formularioContacto.ciudad.selectedIndex].value + "\n";
+
+            datos += "Preferencias: \n";
+
+            for (i=0; i<document.getElementsByTagName("input").length; i++){
+                if (document.getElementsByTagName("input")[i].type == "checkbox") {
+					if(document.getElementsByTagName("input")[i].checked){
+						datos += document.getElementsByTagName("input")[i].value + "\n";
+					}
+				}
+            }
+
+            textarea.value = datos;
+        }
+
+        
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha empleados</title>
+</head>
+<body>
+    <table>
+        <tr><td>    
+    <table>
+        <tr><td><label for="">Nombre: </label></td><td><input type="text" name="ficha"></td></tr>     
+        <tr><td><label for="">Apellidos</label></td><td><input type="text" name="ficha"></td></tr>
+        <tr><td><label for="">DNI: </label></td><td><input type="text" name="ficha" disabled></td></tr>
+        <tr><td><label for="">Fecha Nacimiento: </label></td><td><input type="text"  id="born"></td></tr>
+        <tr><td><label for="">Fecha Muerte: </label></td><td><input type="text" id="dead"></td></tr>
+    </table></td><td><img src="ordenador.jpg" width="143" height="144" alt=""></td></tr>
+    <tr><td><input type="button" value="AÑADIR" onclick="inicio()" style="width:40mm;height: 7mm;"></td><td><input type="button" value="BUSCAR" onclick="buscando(document.getElementsByName('ficha')[0].value)" style="width: 40mm;height: 7mm;"></td></tr>
+</table>
+<h3>Principal aportación al mundo</h3>
+<textarea cols="30" rows="5" style="width: 116mm;"></textarea>
+<script>
+    /*Albert, Einstein, 00001,"1879,03,14","1955,04,18","Teoría de la relatividad",
+    John, von Neumann,00002,"1903,11,28","1957,02,8","Computación",
+    Alan, Turing, 00003,"1912,05,23","1954,05,7","Computación, Máquina de Turing",
+    Dennis, Ritchie, 00004,"1941,08,9","2011,09,11","Crea Lenguaje C y SO Unix",
+    Brian, Kernighan,00005,"1942,00,1",   ,"Lenguaje C y Unix"*/
+    var cjnombre, cjapellidos, cjdni, cjnacimiento, cjmuerte, cjaportacion,cjfoto;
+    var Eminencias=new Array()
+    function Cientifico(cjnombre,cjapellidos,cjdni,cjnacimiento,cjmuerte,cjaportacion,cjfoto){
+        this.nombre=cjnombre;
+        this.apellidos=cjapellidos;
+        this.dni=cjdni;
+        this.nacimiento=cjnacimiento;
+        this.muerte=cjmuerte;
+        this.aportacion=cjaportacion;
+        this.foto=cjfoto
+    }
+    function inicio(){
+        cjnombre=document.getElementsByName('ficha')[0].value;
+        cjapellidos=document.getElementsByName('ficha')[1].value;
+        //cjdni=document.getElementsByName('ficha')[2].value;
+        cjnacimiento=document.getElementById('born').value;
+        cjmuerte=document.getElementById('dead').value;
+        cjaportacion=document.getElementsByTagName('textarea')[0].value;
+        cjfoto=prompt("Introduzca La inicial del nombre y apellido en mayúsculas seguido del resto del apellido","") + ".jpg";
+        generardni(cjnombre,cjapellidos);
+        agregar();
+        //edad();
+    }
+    function agregar(){
+        var personajecientifico=new Cientifico(cjnombre,cjapellidos,cjdni,cjnacimiento,cjmuerte,cjaportacion,cjfoto)
+        Eminencias.push(personajecientifico);
+        document.getElementsByName('ficha')[0].value="";
+        document.getElementsByName('ficha')[1].value="";
+        document.getElementsByName('ficha')[2].value="";
+        document.getElementById('born').value="";
+        document.getElementById('dead').value="";
+        document.getElementsByTagName('textarea')[0].value="";
+        console.log(Eminencias);
+    }
+    function buscando(buscanombre){
+            let busqueda="false";
+            //alert(buscanombre);
+            for(let i=0;i<Eminencias.length;i++){
+                if (Eminencias[i].nombre==buscanombre){
+                    busqueda="true";
+                    document.getElementsByName('ficha')[0].value=Eminencias[i].nombre;
+                    document.getElementsByName('ficha')[1].value=Eminencias[i].apellidos;
+                    document.getElementsByName('ficha')[2].value=Eminencias[i].dni;
+                    document.getElementById('born').value=Eminencias[i].nacimiento;
+                    document.getElementById('dead').value=Eminencias[i].muerte;
+                    document.getElementsByTagName('textarea')[0].value=Eminencias[i].aportacion;
+                    document.getElementsByTagName('img')[0].src=Eminencias[i].foto;
+                    break;
+                }
+                
+            }
+            if(!busqueda){
+                alert("Lo sentimos pero el personaje solicitado\n No se encuentra en nuestras bases");
+            }
+    }
+    function generardni(x,y){
+        let primer=x.charAt(0);
+        let treschar=y.slice(-3);
+        let aleatorio=Math.floor(Math.random()*1000);
+        cjdni=primer+aleatorio+treschar;
+        alert(cjdni);
+    }
+
+</script>
+</body>
+</html>

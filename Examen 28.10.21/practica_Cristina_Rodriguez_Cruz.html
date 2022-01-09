@@ -1,0 +1,105 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de evaluación 28 octubre 2021</title>
+</head>
+<body>
+    <center>
+        <form name="form1" style="align-items: center;">
+            <div>
+                <label for="cjnombre">Nombre: </label><input type="text" name="cjnombre"><br><br>
+            </div>
+            <div>
+                <label>Visualizar: </label><br><br>
+                <textarea cols="30" rows="15"></textarea>
+            </div>
+            <br>
+            <div>
+                <!--onClick = "accion(this.value)"-->
+                <input type="button" value="Añadir" onClick="anadir()"> <input type="button" value="Buscar" onClick="buscar()"> <input type="button" value="Eliminar" onClick="eliminar()"> <input type="button" value="Visualizar" onClick="visualizar()"><br><br>
+            </div>
+            <div>
+                <input type="button" value="Limpiar" onClick = "limpiar()">
+            </div>
+        </form>
+    </center>
+
+    <script>
+
+        nombre = "";
+        nombres = [];
+
+        function anadir(){
+            if(nombres.length<2){
+                nombre = document.getElementsByName("cjnombre")[0].value;
+                nombres.push(nombre);
+                alert("Se ha añadido correctamente el nombre " + nombre);
+
+            }else{
+                nombre = document.getElementsByName("cjnombre")[0].value;                    
+                var posicion = prompt("Hay 2 alumnos \n ¿En qué posición desea añadir al alumno? \n Introduzca Inicio, Final o número");
+                    
+                if (posicion == "Inicio"){
+                    nombres.unshift(nombre);
+
+                }else if (posicion == "Final"){
+                    nombres.push(nombre);
+
+                }else{
+                    posicion = parseInt(posicion);
+                    nombres.splice(posicion, 0, nombre);
+                }
+
+                alert("Se ha añadido correctamente el nombre " + nombre);
+            }            
+        }
+
+        function buscar(){                  
+            nombre = document.getElementsByName("cjnombre")[0].value;
+            
+            if(nombres.indexOf(nombre) == -1){
+                alert("El alumno solicitado NO está en la lista. Puede añadirlo pulsando el botón de añadir");
+            }else{
+                alert("El alumno solicitado existe. Si desea eliminarlo, deberá pulsar el botón eliminar");
+            }
+
+        }
+
+        function eliminar(){
+            nombre = document.getElementsByName("cjnombre")[0].value;
+
+            posicionEliminar = nombres.indexOf(nombre);
+            
+            //El 1 dentro de la función dice que no se va a añadir, el 0 sí.
+
+            nombres.splice(posicionEliminar, 1);
+
+            alert("Se ha eliminado el nombre "+nombre + " que estaba en la posición " + posicionEliminar);
+        }
+
+
+        function visualizar(){
+            var msg = "";
+
+            for (var nombreSel of nombres){
+                posicion = nombres.indexOf(nombreSel);
+                msg += posicion + " - " + nombreSel + "\n";
+            }
+            
+            document.getElementsByTagName("textarea")[0].value = msg;                
+        }
+        
+        function limpiar(){
+            document.getElementsByName("cjnombre")[0].value =  "";
+            document.getElementsByTagName("textarea")[0].value = "";
+
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha Eminencias</title>
+</head>
+<body>
+    <table>
+        <tr><td>    
+    <table>
+        <tr><td><label for="">Nombre: </label></td><td><input type="text" name="ficha"></td></tr>     
+        <tr><td><label for="">Apellidos</label></td><td><input type="text" name="ficha"></td></tr>
+        <tr><td><label for="">DNI: </label></td><td><input type="text" name="ficha" disabled></td></tr>
+        <tr><td><label for="">Fecha Nacimiento: </label></td><td><input type="text"  id="born"></td></tr>
+        <tr><td><label for="">Fecha Muerte: </label></td><td><input type="text" id="dead"></td></tr>
+    </table></td><td><img src="ordenador.jpg" width="143" height="144" alt=""></td></tr>
+    <tr><td><input type="button" value="AÑADIR" style="width:40mm;height: 7mm;" onClick="accion(this.value)"></td><td><input type="button" value="BUSCAR" style="width: 40mm;height: 7mm;" onClick="accion(this.value)"></td></tr>
+</table>
+<h3>Principal aportación al mundo</h3>
+<textarea cols="30" rows="5" style="width: 116mm;"></textarea>
+
+<script>
+    var eminencias = [];
+
+    nombre = document.getElementsByName("ficha")[0];
+    apellidos = document.getElementsByName("ficha")[1];
+    DNI = document.getElementsByName("ficha")[2];
+    fechaNac = document.getElementById("born");
+    fechaMuerte = document.getElementById("dead");
+    aportacion = document.getElementsByTagName("textarea")[0];
+
+
+    function accion(valor){
+        switch (valor){
+            case "AÑADIR": añadir();
+                break;
+            case "BUSCAR": buscar();
+                break;
+        }
+    }
+
+    function Eminencia(nombre, apellidos, fechaNac, fechaMuerte, aportacion, dni, letrayApellido){
+        this.nombre = nombre;
+        this.apellidos = apellidos; 
+        this.fechaNac = fechaNac;
+        this.fechaMuerte = fechaMuerte;
+        this.aportacion = aportacion;
+        this.dni = dni;
+        this.letrayApellido = letrayApellido;
+    }
+
+
+    function añadir(){
+
+        var letrayApellido = prompt("Introduzca la letra inicial del nombre, y el primer apellido");
+
+        var dni = crearDNI(letrayApellido);
+
+        var eminencia = new Eminencia(nombre.value, apellidos.value, fechaNac.value, fechaMuerte.value, aportacion.value, dni, letrayApellido);
+        
+        eminencias.push(eminencia);
+
+        console.log(eminencias);    
+
+        alert("Se ha añadido correctamente la eminencia " + eminencia.nombre + " " +eminencia.apellidos);
+
+        limpiar();
+    }
+
+    function buscar(){
+        var nombreIntr = document.getElementsByName("ficha")[0].value;
+        var encontrado = false;
+
+        for (let eminencia of eminencias){
+            if(nombreIntr == eminencia.nombre){
+
+                document.getElementsByName("ficha")[0].value = eminencia.nombre;
+                document.getElementsByName("ficha")[1].value = eminencia.apellidos;
+                document.getElementsByName("ficha")[2].value = eminencia.dni;
+                document.getElementById("born").value = eminencia.fechaNac;
+                document.getElementById("dead").value = eminencia.fechaMuerte;
+                document.getElementsByTagName("textarea")[0].value = eminencia.aportacion;
+
+                document.getElementsByTagName("img")[0].src = eminencia.letrayApellido + ".jpg";
+
+                encontrado = true;
+                break;
+            }
+        }
+
+        if(!encontrado){
+            alert("La eminencia a buscar no ha sido encontrada en la base de datos");
+        }
+    }
+
+    function limpiar(){
+        document.getElementsByName("ficha")[0].value = "";
+        document.getElementsByName("ficha")[1].value = "";
+        document.getElementsByName("ficha")[2].value = "";
+        document.getElementById("born").value = "";
+        document.getElementById("dead").value = "";
+        document.getElementsByTagName("textarea")[0].value = "";
+    }
+
+    function crearDNI(letrayApellido){
+        var aleatorio = Math.floor(Math.random()*(1000-0)+0);
+
+        var longitud = letrayApellido.length;
+
+        var inicialNombre = letrayApellido.substring(0,1);
+        var letrasApellido = letrayApellido.substring((longitud-3), longitud);
+
+        var dnisinNum = inicialNombre.concat(letrasApellido);
+
+        var dni = dnisinNum + aleatorio;
+
+        return dni;
+    }
+
+</script>
+</body>
+</html>

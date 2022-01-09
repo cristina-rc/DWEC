@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de evaluación 28 octubre 2021</title>
+</head>
+<body>
+    <center>
+        <form name="form1" style="align-items: center;">
+            <div>
+                <label for="cjnombre">Nombre: </label><input type="text" name="cjnombre"><br><br>
+            </div>
+            <div>
+                <label>Visualizar: </label><br><br>
+                <textarea cols="30" rows="15"></textarea>
+            </div>
+            <br>
+            <div>
+                <input type="button" value="Añadir" onclick="Operar('Añadir')"> <input type="button" value="Buscar" onclick="Operar('Buscar')"> <input type="button" value="Eliminar" onclick="Operar('Eliminar')"> <input type="button" value="Visualizar" onclick="Operar('Visualizar')"><br><br>
+            </div>
+            <div>
+                <input type="button" value="Limpiar" onclick="Operar('Limpiar')">
+            </div>
+        </form>
+    </center>
+    <script>
+        var lista = new Array;
+        function Operar(arg) {
+            //Saco los valores de las cajas de texto
+            var nombre = document.getElementsByName("cjnombre")[0];
+            var visualizador = document.getElementsByTagName("textarea")[0];
+            //Array para guardar los nombres
+            
+            switch (arg) {
+                case "Añadir":
+                    if (lista.length > 1) {
+                        var pos = prompt("Hay " +lista.length +" alumnos \n En que posicion desea añadir al alumno? \n Introduzca Inicio, Final o numero","Final");
+                        if (isNaN(pos)) {
+                            switch (pos) {
+                                case "Inicio":
+                                    lista.unshift(nombre.value);
+                                    break;
+                                case "Final":
+                                    lista.push(nombre.value);
+                                    break;
+                            }
+                        }else {
+                            principio = lista.slice(0,pos);
+                            final = lista. slice(pos, lista.length);
+                            principio.push(nombre.value);
+                            lista = principio.concat(final);
+                        }
+                    } else {
+                       lista.push(nombre.value); 
+                    }
+                    break;
+                case "Buscar":
+                    if (lista.includes(nombre.value)) {
+                        alert("El alumno solicitado existe \n Si desea borrarlo debera: \n Pulsar el boton eliminar");
+                    }else {
+                        alert("El alumno solicitado NO esta en la lista \n Puede añadirlo pulsando el boton Añadir");
+                    }
+                    break;
+                case "Eliminar":
+                    if (lista.includes(nombre.value)) {
+                        var pos = lista.indexOf(nombre.value);
+                        lista.splice(pos,1);
+                        alert("Elemento eliminado \n posicion " +pos);
+                    }
+                    break;
+                case "Visualizar":
+                    cadena = "";
+                    for (let i = 0; i < lista.length; i++) {
+                        console.log(lista[i]);
+                        cadena += lista[i] + "\n";
+                    }
+                    visualizador.value = cadena;
+                    break;
+                case "Limpiar":
+                    visualizador.value = "";
+                    nombre.value = "";
+                    break;
+            }
+
+        }
+    </script>
+</body>
+</html>

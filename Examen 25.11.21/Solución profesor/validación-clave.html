@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validando usuario y clave</title>
+</head>
+<body>
+    <label for="">Usuario: </label><input type="text" name="perfil" value=""><br><br>
+    <label for="">Clave: </label><input type="text" name="perfil" value=""><br><br>
+    <input type="button" value="Validar" onclick="leerdatos()">   <input type="button" value="Cancelar" onclick="cancelando();">
+    
+    <script>
+        var usuario, clave;
+        //centinela que avisa de la correccion del usuario
+        var usuarioOK=false;
+        //centinela que avisa de la correccion de la contraseña
+        var claveOK;
+        //centinelas de cada premisa para la contraseña
+        var hayMinusculas=false;
+        var hayMayusculas=false;
+        var hayNumeros=false;
+        var hayOtros=false;
+        //strings con las letras
+        const minusculas="aáàbcçdeéèfghiíìjklmnñoóòppqrstuúüùvwxyz";   
+        const numeros="0123456789";
+        
+        function leerdatos(){
+            usuario=document.getElementsByName('perfil')[0].value;
+            clave=document.getElementsByName('perfil')[1].value;
+            validando(usuario,clave);
+        }
+        
+        function validando(usuario,clave){
+            //peticion de usuario correcto
+            do{
+               usuarioOK=true;
+                if((usuario=="") || (usuario==undefined)|| (usuario==null)){
+                        document.getElementsByName('perfil')[0].value="";
+                        document.getElementsByName('perfil')[1].value="";
+                        alert("Vuelva a introducir el usuario y la clave con el formato adecuado");
+                        end;
+                }
+                //Se trata de comprobar que: 1º la long es distinta de cero y que luego No contiene Mayúsculas ni especiales.
+                
+                    for(let i=0;i<usuario.length;i++){
+                        let caracter=usuario.charAt(i);
+                        //validamos si alguna letra minúscula es del español
+                        if((minusculas.indexOf(caracter)==-1) && (numeros.indexOf(caracter)==-1)){
+                            usuarioOK=false;
+                            alert("El usuario es incorrecto\n"+"No puede contener ni mayúsculas ni caracteres especiales");
+                            break;
+                        }
+                                               
+                    }
+                    
+                    if(!usuarioOK){
+                        
+                        document.getElementsByName('perfil')[0].value="";
+                        document.getElementsByName('perfil')[1].value="";
+                        alert("Vuelva a introducir el usuario y la clave con el formato adecuado");
+                        end;
+                    }
+                           
+            }while(usuarioOK==false);
+            
+            
+                do{
+                    claveOK=true;
+                    alert("dentro 2do do")
+                    hayMinusculas=false;
+                    hayMayusculas=false;
+                    hayNumeros=false;
+                    hayOtros=false;
+                    
+                    if((clave=="") || (clave==undefined)|| (clave==null)){
+                        document.getElementsByName('perfil')[1].value="";
+                        alert("Vuelva a introducir la clave con el formato adecuado");
+                        end;
+                     }
+                        
+                        for(let j=0;j<clave.length;j++){
+                            let caracter=clave.charAt(j);
+                            //validamos si hay alguna letra minúscula
+                            if(minusculas.indexOf(caracter)!=-1){
+                                hayMinusculas=true;
+                            }
+                            //validamos si hay alguna letra mayúscula
+                            else if(minusculas.toUpperCase().indexOf(caracter)!=-1){
+                                hayMayusculas=true;
+                            }
+                            //validamos si hay algún número
+                            else if(numeros.indexOf(caracter)!=-1){
+                                hayNumeros=true;
+                            }
+                            else {//es otro tipo de carácter
+                                hayOtros=true;
+                            }
+                            
+                            claveOK=(hayMinusculas==true && hayMayusculas==true && hayNumeros==true && hayOtros==true );
+                        }
+                        if(!claveOK){
+                        document.getElementsByName('perfil')[1].value="";
+                        alert("Vuelva a introducir la clave con el formato adecuado");
+                        end;
+                        }
+                        
+                        if(claveOK==false){
+                            alert("La contraseña es incorrecta\n"+
+                                "Debe contener minúsculas, mayúsculas,"+
+                                " números y otros símbolos");
+                            break;
+                        }
+                            
+                }while(claveOK==false);
+            
+                if(usuarioOK && claveOK){
+                    alert("Datos almacenados");
+                }
+        }
+        //mensajes finales
+        function cancelando(){
+            alert("El usuario canceló la operación");
+            document.getElementsByName('perfil')[0].value="";
+            document.getElementsByName('perfil')[1].value="";
+            end;
+        }
+
+    </script>
+</body>
+</html>

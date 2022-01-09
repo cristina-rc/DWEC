@@ -1,0 +1,27 @@
+<HTML>
+<head>
+</head>
+<body>
+<script language="javascript">
+var numeros=[4,0,3,4,7,3,5,8,1,8,8,0,2,3,1,2,5,7,3,2,5,1];
+var numero;
+var nuevoArray = [];
+while (numeros.length > 0){
+
+numero=numeros.pop();
+
+	if (nuevoArray.indexOf(numero) == -1) {
+
+		nuevoArray.splice(nuevoArray.length,0,numero);
+	}
+
+
+}
+
+nuevoArray.sort();
+//console.log(nuevoArray);
+document.write(nuevoArray);
+
+</script>
+</body>
+</html>

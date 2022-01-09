@@ -1,0 +1,123 @@
+<html>
+<head><title></title></head>
+<body>
+<center>
+<form name="form1" align="centre">
+    <div>
+	<label for="nombre">Nombre:</label>
+        <input type="text" name="cjnombre" id="nombre" /><br><br>
+    </div>
+    <div>
+	<label for="visual">Visualizar:</label><br>
+        <textarea name="cjvisualizo" id="visual" rows=15 cols=30></textarea><br><br>
+	
+    </div>
+    <div>
+        <input type="button" value="Añadir" onClick="anadir();"/>
+        <input type="button" value="Buscar" onClick="buscar();"/>
+	<input type="button" value="Eliminar" onClick="eliminar();"/>
+	<input type="button" value="Visualizar" onClick="visualizar();"/><br><br>
+    </div>
+    <div>
+        <input type="button" value="Limpiar" onClick="limpio();"/>
+    </div>
+
+</form>
+</center>
+<script language="javascript">
+var alumnos= new Array();
+var elemento="";
+var texto="";
+var indice=0;
+var control=false;
+function anadir() {
+	var posicion="";
+	var index;
+	elemento=document.form1.cjnombre.value;
+	if (alumnos.length >= 2){
+		posicion=prompt("Hay " + alumnos.length + " alumnos \n ¿En qué posición desea añadir al alumno? \n Introduzca Inicio, Final o numero", "Inicio");
+		
+		switch (posicion) {
+			case "Inicio":
+				alumnos.unshift(elemento);
+				document.form1.cjnombre.value="";
+				break;
+			case "Final":
+				final(elemento);
+				break;
+			default:
+				//método splice;
+				index=parseInt(posicion);
+				alumnos.splice(index,0,elemento);
+				document.form1.cjnombre.value="";
+				break;
+				
+		}
+	
+	} else {
+	
+  		final(elemento);
+	}
+
+}
+
+function final (miembro){
+
+	alumnos.push(miembro);
+	document.form1.cjnombre.value="";	
+
+}
+
+
+function buscar() {
+control=false;
+var busqueda=document.form1.cjnombre.value
+//Las opciones más rápidas son los métodos de arrays: indexOf o include. Evitaría el for siguiente.
+	for (var i=0; i < alumnos.length; i++){
+		if (alumnos[i]==busqueda){
+			indice=i;
+			alert("El alumno solicitado existe \n Si desea eliminarlo deberá: \n Pulsar el botón eliminar");
+			control=true;
+			break;	
+		}
+		
+	}
+	if (!control){
+		alert("El alumno solicitado NO está en lista. \n Puede añadirlo pulsando el botón de Añadir"); 
+	}
+  
+}
+function eliminar() {
+	control=false;
+	let aeliminar=document.form1.cjnombre.value;
+  	for (let j=0; j < alumnos.length; j++){
+		if (alumnos[j]==aeliminar){
+			control=true;
+			alert("El alumno solicitado está en la posición " + j + "ra");
+			alumnos.splice(j,1);
+			break;	
+		}
+		
+	}
+  	if(!control){
+		alert("Ha habido un error. \n El alumno solicitado no se encuentra en lista")
+	}
+}
+
+function visualizar() {
+	texto="";
+	document.form1.cjvisualizo.value="";
+	for (var i=0; i<alumnos.length; i++){
+		texto=texto + alumnos[i] + "\n";	
+	}
+  document.form1.cjvisualizo.value=texto;
+}
+function limpio() {
+	document.form1.cjnombre.value="";
+	document.form1.cjvisualizo.value="";
+  
+}
+
+</script>
+</body>
+</html>

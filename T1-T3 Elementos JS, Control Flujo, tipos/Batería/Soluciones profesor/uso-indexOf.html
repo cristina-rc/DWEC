@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <SCript>
+        var abuscar=prompt("De los tipos de queso: Cabrales, Torta del Casaro Idiazabal. ¿Cuál prefieres?")
+        miCadena="cabrales, torta del casar, idiazabal";
+        miCadenaMayusculas="Cabrales, Torta del Casar, Idiazabal";
+        var minusculas=miCadena.indexOf(abuscar);
+        var mayusculas=miCadenaMayusculas.indexOf(abuscar);
+        if (minusculas==-1){
+            alert("El tipo solicitado no se encuentra en minúsculas");
+        }else{
+            alert("El tipo solicitado se encuentra en minúsculas en la posición " + minusculas);
+        }
+        if (mayusculas==-1){
+            alert("El tipo solicitado no se encuentra en mayúsculas");
+        }else{
+            alert("El tipo solicitado se encuentra en mayúsculas en la posición " + mayusculas);
+        }
+        //document.writeln('miCadena.indexOf("idiazabal") está en la posición ' + miCadena.indexOf("idiazabal"))
+        //document.writeln('<P>miCadenaMayusculas.indexOf("idiazabal") está en la posición ' + miCadenaMayusculas.indexOf("idiazabal"))
+
+    </SCript>
+</body>
+</html>

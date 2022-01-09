@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        var miCadena = "cabrales, torta del casar, idiazabal";
+        var miCadenaMayus = "Cabrales, Torta del casar, Idiazabal";
+
+        while(!variedadOK){
+
+            variedadElegida = prompt ("¿Qué variedad de queso prefiere, "+ miCadena + "?");
+            posicion = 0;
+            var variedadOK = false;
+
+            if(variedadElegida == "cabrales" || variedadElegida == "torta del casar" || variedadElegida == "idiazabal"){
+                posicion = miCadena.indexOf(variedadElegida);
+                alert ("La posición que ocupa en la cadena es la: "+posicion);
+                variedadOK = true;
+       
+            }else if (variedadElegida == "Cabrales" || variedadElegida == "Torta del casar" || variedadElegida == "Idiazabal"){
+                posicion = miCadenaMayus.indexOf(variedadElegida);
+                alert ("La posición que ocupa en la cadena es la: "+posicion);
+                variedadOK = true;
+       
+            }else{
+                alert ("Por favor, introduzca una variedad correcta");
+            }
+        }        
+
+    </script>
+    
+</body>
+</html>

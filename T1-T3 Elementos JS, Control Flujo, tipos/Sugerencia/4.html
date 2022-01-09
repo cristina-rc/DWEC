@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    NÚMERO ENTRE 1 Y 100: <input type="number" id="intento"><br>
+    PISTA: <input type="text" id="pista"><br><br>
+
+    <input type="button" id="comprobar" value="Comprobar" onClick="comprobarIntento()"><br><br>
+    <input type="button" id="salir" value="Salir de la partida" onClick="salirPartida()">
+
+
+    <script>
+        var numeroGenerado = Math.floor(Math.random()*(100-1)) + 1;
+        var intentos = 1;
+
+        function comprobarIntento(){       
+            var numeroIntroducido = document.getElementById("intento").value;            
+
+            if(numeroIntroducido==numeroGenerado){
+                alert("Enhorabuena, ha acertado el número en " + intentos + " intentos");
+                salirPartida();
+
+            }else{
+                if(numeroIntroducido<numeroGenerado){
+                    document.getElementById("pista").value="El número es mayor";
+                    intentos++;
+
+                }else if(numeroIntroducido>numeroGenerado){
+                    document.getElementById("pista").value="El número es menor";                    
+                }
+                intentos++;
+            }
+
+        }
+
+        function salirPartida(){            
+            var intentar = prompt("¿Desea volver a intentarlo?");
+
+            if(intentar.toLowerCase() == "si"){    
+                numeroGenerado = Math.floor(Math.random()*(100-1)) + 1;
+                intentos = 1;
+                document.getElementById("intento").value = "";
+                document.getElementById("pista").value="";
+
+            }else{
+                document.write("Ha salido de la partida");
+            }              
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica de evaluación 28 octubre 2021</title>
+
+    <script lang="javascript">
+
+        var lista = new Set();
+
+        function acción(parametro){
+
+            switch (parametro) {
+
+                case 'A':
+
+                    if (lista.size > 1) {
+
+                        var respuesta = prompt('Hay '+lista.size+' alumnos ¿En que posición desea añadir al alumno? Introduzca Inicio, Final o (numero)');
+
+                        respuesta = respuesta.toLowerCase();
+
+                        switch (respuesta){
+
+                            case 'inicio':
+
+                                var auxiliar = [...lista];
+
+                                lista.clear;
+
+                                lista.add(document.getElementsByName('cjnombre')[0].value);
+
+                                for(let i=0; i<auxiliar.length; i++){
+
+                                    lista.add(auxiliar[i]);
+
+                                }
+
+                                alert(' Añadido el nombre '+document.getElementsByName('cjnombre')[0].value);
+
+                                break;
+
+                            case 'final':
+
+                                lista.add(document.getElementsByName('cjnombre')[0].value);
+
+                                alert(' Añadido el nombre '+document.getElementsByName('cjnombre')[0].value);
+
+                                break;
+
+                            default:
+
+                                respuesta = parseInt(respuesta);
+
+                                if (respuesta > lista.size) {
+
+                                    alert(' --ERROR-- La posición es mayor que el tamaño de la lista ');
+
+                                }else{
+
+                                    var auxiliar = [...lista];
+
+                                    for(let i=0; i<auxiliar.length; i++){
+
+                                        if(i=respuesta){
+
+                                            lista.add(document.getElementsByName('cjnombre')[0].value);//añade el elemento en la posición solicita(pero no hay incremento de i)
+
+                                        }
+
+                                        lista.add(auxiliar[i]);//continua añadiendo el resto del array
+
+                                    }
+
+                                    alert(' Añadido el nombre '+document.getElementsByName('cjnombre')[0].value);
+
+                                }
+
+                        }
+
+                    }else{
+
+                        lista.add(document.getElementsByName('cjnombre')[0].value);
+
+                        alert(' Añadido el nombre '+document.getElementsByName('cjnombre')[0].value);
+
+                    }
+                    
+                    break;
+
+                case 'B':
+
+                    if(lista.has(document.getElementsByName('cjnombre')[0].value)){
+
+                        alert(' El alumno solicitado existe. Si desea eliminarlo deberá: Pulsar el botón eliminar ')
+
+                    }else{
+
+                        alert('El alumno solicitado NO esta en lista. Puede añadirlo pulsando el botón de añadir')
+
+                    }
+
+                    break;
+
+                case 'E':
+
+                    var contador=0;
+
+                    for(let element of lista){
+
+                        if (element == document.getElementsByName('cjnombre')[0].value){
+
+                            break;
+
+                        }
+
+                        contador++;
+
+                    }
+
+                    lista.delete(document.getElementsByName('cjnombre')[0].value);
+                    
+                    alert(' Eliminado el nombre situado en la posición '+contador);
+
+                    break;
+
+                case 'V':
+
+                    for(let element of lista){
+
+                        document.getElementsByTagName('textarea')[0].value += element;
+
+                    }
+
+                    break;
+
+                case 'L':
+
+                    document.getElementsByTagName('textarea')[0].value = "";
+                    document.getElementsByName('cjnombre')[0].value = "";
+
+
+            }
+
+        }
+
+    </script>
+
+</head>
+<body>
+    <center>
+        <form name="form1" style="align-items: center;">
+            <div>
+                <label for="cjnombre">Nombre: </label><input type="text" name="cjnombre"><br><br>
+            </div>
+            <div>
+                <label>Visualizar: </label><br><br>
+                <textarea cols="30" rows="15"></textarea>
+            </div>
+            <br>
+            <div>
+                <input type="button" value="Añadir" onclick='acción("A")'> <input type="button" value="Buscar" onclick='acción("B")'> <input type="button" value="Eliminar" onclick='acción("E")'> <input type="button" value="Visualizar" onclick='acción("V")'><br><br>
+            </div>
+            <div>
+                <input type="button" value="Limpiar" onclick='acción("L")'>
+            </div>
+        </form>
+    </center>
+    <script lang="javascript">
+
+    </script>
+</body>
+</html>

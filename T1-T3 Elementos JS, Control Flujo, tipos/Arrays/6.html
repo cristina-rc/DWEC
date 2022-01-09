@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="text" id="texto"><br>
+    <input type="text" id="palindromo"><br>
+
+    <input type="submit" value="¿Palindromo?" onClick="esPalindromo()">
+
+
+
+    <script>
+
+        var texto;
+
+        function esPalindromo(){
+
+            texto = document.getElementById("texto").value;
+            texto = texto.toLowerCase();
+
+            textoSinTildes = eliminarDiacriticosEs(texto);
+            textoSinSignos = eliminarSignos(textoSinTildes);
+            textoSinEspacios = eliminarEspacios(textoSinSignos);
+            
+
+            function eliminarDiacriticosEs(texto) {
+                return texto
+                .normalize('NFD')
+                .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
+                .normalize();
+            }
+
+            function eliminarSignos(textoSinTildes){
+                textoSinTildes = textoSinTildes.replace(/['!"#$%&\\'()\*+,\-\.\/:;<=>?@\[\\\]\^_`{|}~']/g,"");
+                textoSinTildes = textoSinTildes.replace(/\d/g,"");
+                return textoSinTildes;
+            }
+
+            function eliminarEspacios(textoSinSignos){
+                textoSinSignos = textoSinSignos.replace(/ /g, ""); 
+                return textoSinSignos;
+            }                
+
+            function reverse(textoSinEspacios){
+                var reverse = textoSinEspacios.split("").reverse().join("");
+                return reverse;
+            }
+
+            if(textoSinEspacios==reverse(textoSinEspacios)){
+                document.getElementById("palindromo").value = "El texto SI es palíndromo";
+            }else{
+                document.getElementById("palindromo").value = "El texto NO es palíndromo";
+            }
+        }            
+
+    </script>
+</body>
+</html>

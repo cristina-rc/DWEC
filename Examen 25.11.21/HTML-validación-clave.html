@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validando usuario y clave</title>
+</head>
+<body>
+    <label for="">Usuario: </label><input type="text" name="perfil" value=""><br><br>
+    <label for="">Clave: </label><input type="text" name="perfil" value=""><br><br>
+    <input type="button" value="Validar" onClick = "validar()">   <input type="button" value="Cancelar" onClick="cancelar()">
+
+    <script>
+        var usuario = document.getElementsByName("perfil")[0];
+        var clave = document.getElementsByName("perfil")[1];
+
+        function validar(){
+            var usuarioIntr = usuario.value;
+            var claveIntr = clave.value;
+
+            var usuarioOK = false;
+            var claveOK = false;
+
+            var usuarioMinus = usuarioIntr.toLowerCase();
+
+            if(usuarioIntr == usuarioMinus){
+                usuarioOK = true;
+            }
+
+            var minusOK = false;
+            var mayusOK = false;
+            var numeroOK = false;
+            
+            for(letra of claveIntr){
+                if(letra == letra.toLowerCase()){
+                    minusOK = true;                    
+                }
+                if(letra == letra.toUpperCase()){
+                    mayusOK = true;                     
+                }
+                if(!isNaN(letra)){
+                    numeroOK = true;                    
+                }
+            }
+
+            if(minusOK && mayusOK && numeroOK){
+                claveOK = true;
+            }
+
+            if(!usuarioOK){
+                alert("El usuario tiene que estar formado por letras minúsculas y/o números");
+            }
+            if(!claveOK){
+                alert("La clave tiene que contener al menos uno de los siguientes caracteres: una mayúscula, una minúscula, un número y un carácter especial");
+            }
+
+            if(usuarioOK && claveOK){
+                alert("El usuario ha sido dado de alta correctamente");
+            }
+        }
+
+        function cancelar(){
+            alert("Se ha cancelado la operación");
+        }
+        
+    </script>
+</body>
+</html>

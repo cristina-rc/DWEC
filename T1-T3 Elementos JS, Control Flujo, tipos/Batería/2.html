@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    FRASE: <input type="text" id="frase"><br>
+
+    CARACTER ALEATORIO: <input type="text" id="caracterAleatorio"><br>
+    
+    <input type="button" id="ver" value="Generar caracter aleatorio" onClick="mostrarCaracter()"><br>
+
+    CARACTER DE PARADA: <input type="text" id="caracterParada"><br>
+
+    <input type="button" id="parada" value="Generar caracter de parada" onClick="generarParada()"><br>
+    
+    <script>
+
+        var indiceparada;
+        var frase;
+        var fraseSinEspacios;
+
+        function generarParada(){
+
+            frase = document.getElementById("frase").value;
+            fraseSinEspacios = frase.replace(/ /g, "");
+
+            var posAleatoria = Math.floor(Math.random() * (fraseSinEspacios.length));
+            var charAleatParada = fraseSinEspacios.charAt(posAleatoria);
+
+            document.getElementById("caracterParada").value = charAleatParada;
+        }
+
+
+        function mostrarCaracter(){    
+                    
+            var posAleatoria2 = Math.floor(Math.random() * (fraseSinEspacios.length));
+            var charAleatorio = fraseSinEspacios.charAt(posAleatoria2);
+
+            document.getElementById("caracterAleatorio").value = charAleatorio;
+
+            if(document.getElementById("caracterParada").value == document.getElementById("caracterAleatorio").value){
+                alert("Coincidencia de caracteres");
+            window.close();
+
+            }
+        }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+   Número: <input type="number" id="numero"><br>
+
+   Resultado: <input type="text" id="resultado"><br>
+
+   <input type="submit" id="calcular" value="Calcular factorial" onClick="calcularFactorial()">
+
+    <script>
+        function calcularFactorial(){
+
+            var factorial = 1;
+            var numero = document.getElementById("numero").value;
+
+            multiplicador = numero;
+
+            while(multiplicador>1){
+                factorial = factorial*multiplicador;
+                multiplicador--; 
+            }
+
+            document.getElementById("resultado").value = "El resultado del factorial de " + numero + " es: " + factorial;
+        }        
+
+    </script>
+</body>
+</html>

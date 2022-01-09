@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var media = 0;
+        var totalNumeros = 0;
+        var sumaNumeros = 0;
+        var numeroIntroducido = null;
+
+        while(true){
+            numeroIntroducido = prompt("Introduzca un número o pulse 0 para salir y obtener la media:");
+
+            if(numeroIntroducido!=''){
+                if(null == numeroIntroducido){
+                document.write("Ha abandonado el programa");
+                break;
+
+                } else if(numeroIntroducido == 0){
+                    break;
+
+                } else if(numeroIntroducido.length > 0 && !isNaN(numeroIntroducido)){
+                    sumaNumeros += parseInt(numeroIntroducido);
+                    
+                    totalNumeros++;
+
+                } else {               
+                    alert("Ha introducido un carácter incorrecto.");
+                }
+
+            }else{
+                 alert("Ha introducido un campo vacío");  
+            }          
+
+        }
+    
+        if(numeroIntroducido != null){
+            media = sumaNumeros / totalNumeros;
+            alert("La media de los números introducidos es: "+media);
+        }
+    </script>
+
+</body>
+</html>

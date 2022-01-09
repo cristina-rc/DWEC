@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuadrados aleatorios</title>
+    <style>
+        div{
+            position:fixed;
+            width:50px;
+            height:50px;        
+        }
+    </style>
+</head>
+<body>
+    <div class="box"id="cuadrado"></div>
+
+    <script>
+        var cuadrado = document.getElementById("cuadrado");
+
+        for(var i=0; i<2000; i++){
+
+            //QUÉ HACE TRUE?
+            var clon = cuadrado.cloneNode(true);
+            clon.style.left = (Math.random() * (1550-0) + 0) +'px';
+            clon.style.top = (Math.random() * (720-0) + 0) +'px';
+            clon.style.backgroundColor = "RGB(" + (Math.random() * (255-0) + 0) + ", " + (Math.random() * (255-0) + 0) + ", " + (Math.random() * (255-0) + 0) + ")";
+
+            //NO ENTIENDO BIEN LO QUE HACE ESTO
+            cuadrado.parentNode.insertBefore(clon, cuadrado);
+        }
+
+    </script>   
+    
+</body>
+</html>

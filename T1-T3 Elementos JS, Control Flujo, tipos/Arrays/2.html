@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Mensaje: <input type="text" id="mensaje"><br>
+    Clave: <input type="text" id="clave"><br>
+    Mensaje cifrado: <input type="text" id="mensajeCifrado"><br>
+
+    <input type="submit" value="Cifrar" onClick="cifrar()"><br>
+
+    <script>
+
+        var mensaje;
+        var clave;
+        var mensajeCifrado;
+
+        function cifrar(){
+
+            mensaje = document.getElementById("mensaje").value;
+            clave = document.getElementById("clave").value;
+            mensajeCifrado = document.getElementById("mensajeCifrado");
+
+            var resultado = "";
+            var j = 0;
+
+            for(var i = 0; i<mensaje.length; i++){
+	
+                if(j==clave.length){
+                    j=0;	
+                }
+                var unicode = mensaje.charCodeAt(i) + parseInt(clave[j]);
+                var caracter = String.fromCharCode(unicode);
+                resultado += caracter;
+
+                j++;	           
+            }                  
+            mensajeCifrado.value=resultado;
+        }        
+
+    </script>
+
+</body>
+</html>

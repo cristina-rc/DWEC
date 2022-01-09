@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <textarea name="textarea" cols="30" rows="10"></textarea>
+    <input type="submit" value="Generar" onClick="calcularFrecuencias()">
+    <input type="button" value="Limpiar" onClick="limpiar()">
+
+    <script>
+
+        var numeros = [];
+        var frecuencias = new Map();
+        var contador = 0;
+        var msg = "";
+
+        function calcularFrecuencias(){
+
+            msg = "";
+            numeros = [];
+
+            for(var i=0; i<10000; i++){
+                var numGenerado = Math.floor(Math.random()*(11-1)+1);
+                numeros.push(numGenerado);
+            }
+            
+            for(var i=1; i<=10; i++){
+                contador = 0;
+                for(var j=0; j<numeros.length; j++){
+                    if(numeros[j] == i){
+                        contador++;
+                        frecuencias.set(i, contador);
+                    }
+                }    
+            }
+
+            for([clave,valor] of frecuencias){
+                msg += "Número "+ clave + ", Frecuencia: "+ valor + "\n";
+            }
+
+            document.getElementsByName("textarea")[0].value=msg;
+        }
+
+        function limpiar(){
+
+            document.getElementsByName("textarea")[0].value = "";
+        }
+    </script>
+    
+</body>
+</html>

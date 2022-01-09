@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input area="text" name="palabras"><br>
+    <input area="text" name="palabras"><br>
+    <input area="text" name="palabras"><br>
+    <input area="text" name="palabras"><br>
+    <input area="text" name="palabras"><br>
+
+    <input type="submit" value="Presentar" onClick="separarPalabras()">
+
+    <script>
+
+    var frase = "";
+    var arrayPalabras = [];
+
+    function separarPalabras(){
+        frase = prompt("Introduzca una frase con 5 palabras");
+
+        arrayPalabras = frase.split(" ");
+
+        for(var i=0; i<arrayPalabras.length; i++){
+            document.getElementsByName("palabras")[i].value=arrayPalabras[i];
+        }
+    }
+    
+    </script>
+    
+</body>
+</html>

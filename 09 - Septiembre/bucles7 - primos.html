@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <textarea name="caja" id="visor" cols="30" rows="6"></textarea>
+
+    <script>
+
+    var visor = document.getElementById("visor");
+
+    function generarNumerosPrimos(intervalo){
+        for (let i = 2; i <=intervalo; i++) {
+
+            if(esPrimo(i)){
+
+                let numero = document.createTextNode(i + "\n");
+
+                visor.appendChild(numero);
+            }
+        }        
+    }
+
+    function esPrimo(numero){
+        var contador = 2;
+        primo=true;
+        while ((primo) && (contador!=numero)){
+            if (numero % contador == 0){
+                primo = false;
+                contador++;
+            }           
+        }  
+        return primo;
+    }
+    
+
+    generarNumerosPrimos(intervalo);
+    
+    </script>
+
+</body>
+</html>

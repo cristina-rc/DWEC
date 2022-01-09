@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Formulario</title>
+	</head>
+	<body>
+			<form action=mailto:"formulario@miempresa.com" id="formulario">
+				<table>
+					<tr>
+						<td>Usuario:</td>
+						<td><input type="text" id="usuario" placeholder="Usuario" required></td>
+					</tr>
+					<tr>
+						<td>Clave:</td>
+						<td><input type="text" id="clave" placeholder="Clave" required></td>
+					</tr>
+                    <tr>
+						<td><input type="submit" value="Validar" id="submit" onclick="compara()"></td>
+                    </tr>
+				</table>
+			</form>		
+			<script>
+				function compara(){
+					alert(document.getElementById('usuario').value);
+				}
+			</script>	
+	</body>
+</html>

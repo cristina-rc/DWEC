@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="date" id="fechaNac"><br>
+    <input type="text" id="mayorEdad"><br>
+    <input type="submit" value="Comprobar si es mayor de edad" onClick="comprobarMayoriaEdad()">
+
+    <script>
+
+        function comprobarMayoriaEdad(){
+
+            var miliSecs18 = 568036800000;
+
+
+            var fechaNac = document.getElementById("fechaNac").value;
+
+            var fechaNacMiliSecs = Date.parse(fechaNac);
+
+
+            var fechaActual = new Date();
+
+            var fechaActMiliSecs = Date.parse(fechaActual);
+
+
+            if((fechaActMiliSecs-fechaNacMiliSecs)<=miliSecs18){
+                document.getElementById("mayorEdad").value="Usted es menor de edad";
+            }else{
+                document.getElementById("mayorEdad").value="Usted es mayor de edad";
+            }
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Formulario</title>
+	</head>
+	<body>
+            <table>
+                <tr>
+                    <td>Operando A:</td>
+                    <td><input type="number" id="operandoA" placeholder="Operando A" required></td>
+                    <!--<td><label for=""></label><input type="number" name="operandos" placeholder="Operando A" required></td>-->
+                </tr>
+                <tr>
+                    <td>Operando B:</td>
+                    <td><input type="number" id="operandoB" placeholder="Operando B" required></td>
+                    <!--<td><label for=""></label><input type="number" name="operandos" placeholder="Operando B" required></td>-->
+                </tr>
+                <tr>
+                <td>Resultado: </td>
+                <td><label for=""></label><input type="text" id="resultado" placeholder="Resultado">
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="button" value="Sumar" id="sumar" onclick=Sumar()></td>
+                </tr>
+            </table>
+        </form>		
+        <script>
+            //var a;    Variable con ámbito global
+            function Sumar(){
+                let operando1 = parseFloat(document.getElementById('operandoA').value);
+                let operando2 = parseFloat(document.getElementById('operandoB').value);
+
+                //let b = document.getElementsByName("operandos")[1].value;  --<getElementsByName se comporta como un array
+                //a = document.getElementsByName("operandos")[0].value;
+                let sumaTotal = operando1 + operando2;
+
+                alert("El resultado de sumar " + operando1 +" + " +operando2 +" es: " +sumaTotal);
+
+                document.getElementById("resultado").value=operando1+operando2;
+            }
+            //alert (b);   -- no puede acceder a la información, ya que b es una variable local dentro de la función sumar();
+        </script>	
+	</body>
+</html>

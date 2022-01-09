@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <label>Marca: </label><input type="text"></br></br>
+    <label>Modelo: </label><input type="text"></br></br>
+    <label>Año: </label><input type="text"></br></br>
+
+    <hr>
+
+    <label>Nombre: </label><input type="text"></br></br>
+    <label>Apellidos: </label><input type="text"></br></br>
+    <label>Teléfono: </label><input type="text"></br></br>
+
+
+    <input type="button" value="Ver datos" onclick="imprimirDatos()"></br></br>
+
+    <textarea name="caja" id="visor" cols="30" rows="6"></textarea>
+
+    <script lang="javascript">
+
+    
+        function imprimirDatos(){ 
+        
+            var tuAuto = {
+                marca: (document.getElementsByTagName("input")[0].value),
+                modelo: (document.getElementsByTagName("input")[1].value),
+                anio: (document.getElementsByTagName("input")[2].value),
+                nombre: (document.getElementsByTagName("input")[3].value),
+                apellidos: (document.getElementsByTagName("input")[4].value),
+                telefono: (document.getElementsByTagName("input")[5].value)
+            }
+
+            var texto = "Los datos disponibles del objeto son: \n"+tuAuto.marca +" " +tuAuto.modelo +" " +tuAuto.anio +"\n" +tuAuto.nombre +" " +tuAuto.apellidos +" " +tuAuto.telefono; 
+            
+            document.getElementById("visor").value = texto;  
+            
+            
+            //Para recorrrer el getElementsByTagName 
+            //for(let i = 0; i<getElementsByTagName("input").length; i++){
+            //document.getElementsByTagName("input")[i].value = Object.values(tuAuto)[i];
+            //}
+        }
+
+
+    </script>
+</body>
+</html>

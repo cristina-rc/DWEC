@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>GENERACIÓN DE TABLA PERSONALIZADA</h1><br><br>
+
+    <p><B><I>Introduzca loa siguientes datos</I></B></p><br><br>
+    <label for="">Introduzca el número de filas: </label><input type="text" id="cjFilas"><br><br>
+    <label for="">Introduzca el número de columnas: </label><input type="text" id="cjcolumnas"><br><br>
+    <label for="">Introduzca el color deseado: </label><input type="text" id="cjcolor">
+    <input type="button" value="Visualizar" onclick="dibujaTabla(document.getElementById('cjFilas').value,document.getElementById('cjcolumnas').value,document.getElementById('cjcolor').value);">
+    <script>
+        function dibujaTabla(nf,nc,color){
+            
+            document.write("<table style='border-collapse:collapse; border:3px solid ${color};width:100%;'>");
+
+            for(let i=1;i<=nf;i++){
+                document.write("<tr>");
+                    for(let j=1;j<=nc;j++){
+                        document.write(`<td style='border:1px solid ${color}'>&nbsp;</td>`);
+                    }
+                document.write("</tr>");
+            }
+            document.write("</table>" + "<br><br>");
+        }
+
+
+    </script>
+</body>
+</html>

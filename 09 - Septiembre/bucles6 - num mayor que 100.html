@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <label>Número: </label><input type="text" id="entradaDatos"></br></br>
+    <input type="button" value="Comprobar número" onclick="comprobarNumero()"></br>
+
+    <script>
+
+    alert("Introduzca un número mayor que 100");
+      
+        function comprobarNumero(){
+
+            let numeroIntroducido = document.getElementById("entradaDatos").value;
+            
+            while(numeroIntroducido<100 && numeroIntroducido!=""){
+                alert("Número incorrecto. Introduzca un número mayor que 100");
+                break;                
+            }
+
+            if(numeroIntroducido>100 || numeroIntroducido==""){
+                alert("Saliendo del programa");
+            }
+
+            numeroIntroducido = "";
+        
+        } 
+
+    </script>
+
+</body>
+</html>

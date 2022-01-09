@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palabras repetidas</title>
+</head>
+<body>
+    <script>
+        var arrayPalabras = [];
+        var palabra = "";
+
+        do{
+            palabra = prompt("Introduzca una palabra");
+            arrayPalabras.push(palabra);
+
+        }while (palabra!=null && palabra!="");
+
+        //borramos la última posición del array que corresponde a un null o vacío (cancelar, o texto en blanco)
+        arrayPalabras.pop();
+
+        //ordenamos el array
+
+        arrayOrdenado = arrayPalabras.sort((a,b)=>a.localeCompare(b, "es"));  
+
+        console.log(arrayOrdenado);
+
+        function mapaRepeticiones(arrayOrdenado){
+
+            var mapaRepes = new Map();
+
+            for(palabra of arrayOrdenado){
+                if(mapaRepes.has(palabra)){
+                    var repeticiones = mapaRepes.get(palabra);
+                    mapaRepes.set(palabra, repeticiones+1);
+                }else{
+                    mapaRepes.set(palabra, 1);
+                }
+            }
+
+            console.log(mapaRepes);
+        }
+
+        mapaRepeticiones(arrayOrdenado);
+    </script>
+</body>
+</html>

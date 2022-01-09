@@ -1,0 +1,179 @@
+
+<!--Ejercicio de introducir animales (tienen que ser perro,gato o cobaya sino sale error), introducir 
+nombre y sexo que son de la clase principal animales, e introducir raza y tipo en perros y gatos, y en cobaya hereda
+los atributos de animales.
+Al pulsar añadir se introducen los datos , y al pulsar cruzar con prompt se eligen dos animales:
+Si ambos son del mismo tipo y de sexos contrarios se crea un nuevo objeto y se muestra mensaje de que los animales
+se han cruzado, sino se muestra error.-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIENDA DE ANIMALES</title>
+</head>
+<body>
+    <h1>BIENVENIDO A LA TIENDA DE ANIMALES</h1>
+
+    <form action="" method="">
+        <p>
+            <label for="">Introduzca nombre: </label>
+            <input type="text" name="nombre">
+        </p>
+        <p>
+            <label for="">Introduzca tipo de animal: </label>
+            <input type="text" name="tipo">
+        </p>
+        <p>
+            <img src="" id="imagenTipo">
+        </p>
+        <p>
+            <label for="">Introduzca sexo: </label>
+            <input type="text" name="sexo">
+        </p>
+        <p>
+            <label for="">Introduzca raza: </label>
+            <input type="text" name="raza">
+        </p>
+        <p>
+            <textarea name="texto" cols="30" rows="20" disabled></textarea>
+        </p>
+        
+        
+        <input type="button" name="boton" value="AGREGAR" onclick="accion(this.value)">
+        <input type="button" name="botton" value="CRUZAR ANIMALES" onclick="accion(this.value)">
+    </form>
+    <script>
+        var tiendaAnimales=[];
+        var cruce=[];
+        function accion(boton){
+            var msg="";
+            //Declaración de variables
+            var nombre=document.forms[0].nombre.value;
+            var tipo=document.forms[0].tipo.value;
+            var sexo=document.forms[0].sexo.value;
+            var raza=document.forms[0].raza.value;
+            var imagen="perro.jpg";
+            var imagen2="gato.jpg";
+            var imagen3="cobaya.jpg";
+
+            
+            //Constructor animales
+            function animales(nombre,sexo){
+                this.nombre=nombre;
+                this.sexo=sexo;
+                this.toString=function toString(){
+                    return "Los datos del animal registrado son:\nNombre: "+this.nombre+"\nSexo: "+this.sexo+"\n";
+                }
+            }
+            var animal=new animales(nombre,sexo);
+
+            function perro(nombre,sexo,raza,tipo,imagen){
+                this._proto_=new animales(nombre,sexo);
+                this.tipo=tipo;
+                this.raza=raza;
+                this.imagen=imagen;
+                this.toString=function toString(){
+                    return this._proto_.toString()+"\nTipos: "+this.tipo+"\nRaza: "+this.raza;
+                }
+            
+            }
+            var perro_=new perro(nombre,sexo,raza,tipo,imagen);
+
+            function gato(nombre,sexo,raza,tipo,imagen2){
+                this._proto_=new animales(nombre,sexo);
+                this.sexo=sexo;
+                this.tipo=tipo;
+                this.raza=raza;
+                this.imagen2=imagen2;
+                this.toString=function toString(){
+                    return this._proto_.toString()+"\nTipos: "+this.tipo+"\nRaza: "+this.raza;
+                }
+            }
+
+            var gato_=new gato(nombre,sexo,raza,tipo,imagen2);
+
+            function cobaya(nombre,sexo,tipo,imagen3){
+                this._proto_=new animales(nombre,sexo);
+                this.tipo=tipo;
+                this.imagen3=imagen3;
+                this.toString=function toString(){
+                    return this._proto_.toString()+"\nTipo: "+this.tipo;
+                }
+            }
+            var cobaya_=new cobaya(nombre,sexo,tipo,imagen3);
+
+            switch(boton){
+                case "AGREGAR":
+                if(tipo=="perro"){console.log(tipo);
+                    tiendaAnimales.push(perro_);
+                    console.log(tiendaAnimales);
+                    document.forms[0].texto.value=perro_.toString();
+                    document.getElementById("imagenTipo").src=perro_.imagen;
+                }else if(tipo=="gato"){
+                    tiendaAnimales.push(gato_);
+                    console.log(tiendaAnimales);
+                    document.forms[0].texto.value=gato_.toString();
+                    document.getElementById("imagenTipo").src=gato_.imagen2;
+                }else if(tipo=="cobaya"){
+                    tiendaAnimales.push(cobaya_);
+                    console.log(tiendaAnimales);
+                    document.forms[0].texto.value=cobaya_.toString();
+                    console.log(cobaya.imagen3);
+                    document.getElementById("imagenTipo").src=cobaya_.imagen3;
+                }else{
+                    document.forms[0].texto.value="No disponemos del animal introducido";
+                }
+                break;
+                case "CRUZAR ANIMALES":
+                    var indice=0;
+                    var indice2=0;
+                    var animal1=prompt("Introduce un animal");
+                    var animal2=prompt("Introduce otro animal");
+                    for(let valor in tiendaAnimales){
+                    if(animal1==tiendaAnimales[valor].nombre){
+                        indice=valor;
+                        }
+                    }
+                    for(let valor2 in tiendaAnimales){
+                    if(animal2==tiendaAnimales[valor2].nombre){
+                        indice2=valor2;
+                        }
+                    }
+                    console.log(indice);
+                    console.log(indice2);
+                        if((tiendaAnimales[indice].tipo=="perro")&&(tiendaAnimales[indice2]["tipo"]=="perro")){
+                            
+                            if(tiendaAnimales[indice].sexo!=tiendaAnimales[indice2].sexo){
+                                var animalNuevo=new perro("chispitas","macho","mestizo","perro");
+                                document.forms[0].texto.value="Se ha cruzado un nuevo animal";
+                            }else if(tiendaAnimales[indice]["_proto_"]["sexo"]==tiendaAnimales[indice2]["_proto_"]["sexo"]){
+                                document.forms[0].texto.value="No se pueden cruzar, son del mismo sexo";
+                            }
+                        }else if((tiendaAnimales[indice]["tipo"]=="gato")&&(tiendaAnimales[indice2]["tipo"]=="gato")){
+                            if(tiendaAnimales[indice]["_proto_"]["sexo"]!=tiendaAnimales[indice2]["_proto_"]["sexo"]){
+                                var animalNuevo=new gato("chispitas","macho","mestizo","gato");
+                                document.forms[0].texto.value="Se ha cruzado un nuevo animal";
+                            }else if(tiendaAnimales[indice]["_proto_"]["sexo"]==tiendaAnimales[indice2]["_proto_"]["sexo"]){
+                                document.forms[0].texto.value="No se pueden cruzar, son del mismo sexo";
+                            }
+                        }else if((tiendaAnimales[indice]["tipo"]=="cobaya")&&(tiendaAnimales[indice2]["tipo"]=="cobaya")){
+                            if(tiendaAnimales[indice]["_proto_"]["sexo"]!=tiendaAnimales[indice2]["_proto_"]["sexo"]){
+                            var animalNuevo=new cobaya("chispitas","macho","cobaya");
+                            document.forms[0].texto.value="Se ha cruzado un nuevo animal";
+                            }else if(tiendaAnimales[indice]["_proto_"]["sexo"]==tiendaAnimales[indice2]["_proto_"]["sexo"]){
+                                document.forms[0].texto.value="No se pueden cruzar, son del mismo sexo"; 
+                            }
+                        }
+                        
+                    
+                
+                break;
+
+            }
+        }
+    </script>
+</body>
+</html>

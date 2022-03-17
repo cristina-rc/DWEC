@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>padres hijos y nietos</title>
+		<meta charset='utf-8'>
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", inicio, false);
+			function inicio(){
+				comienzo=document.getElementById('comprobar');
+				comienzo.addEventListener("click",modificacion,false);
+			}
+			function modificacion(){
+				anhadirCeldas=document.getElementById('anhadirCeldas');
+				eliminarCeldas=document.getElementById('eliminarCeldas');
+				anhadirFilas=document.getElementById('anhadirFilas');
+				eliminarFilas=document.getElementById('eliminarFilas');
+				
+				fila=document.querySelector('tr');
+				primeraFila=document.getElementsByTagName('tr')[0];
+				paraAnhadirCeldas=fila.lastChild;
+				celdas=document.querySelector('td');
+				tabla=document.getElementsByTagName('table')[0];
+
+				if (anhadirCeldas.value != "") {
+					alert("añado celdas");
+					for (var i = 0; i < parseInt(anhadirCeldas.value); i++) {
+						celda=document.createElement('td');
+						texto=document.createTextNode('celda');
+						celda.appendChild(texto);
+						fila.insertBefore(celda,celdas);
+					}
+				}
+
+				if (eliminarCeldas.value != "") {
+					alert("elimino celdas");
+					for (var i = 0; i < parseInt(eliminarCeldas.value); i++) {
+						fila.removeChild(document.getElementsByTagName('td')[0]);
+					}
+				}
+				if (anhadirFilas.value != "") {
+					alert("añado filas");
+					for (var i = 0; i < parseInt(anhadirFilas.value); i++) {
+						clonarFila=fila.cloneNode(true);
+						tabla.appendChild(clonarFila);
+					}
+				}
+				if (eliminarFilas.value != "") {
+					alert("elimino filas");
+					for (var i = 0; i < parseInt(eliminarFilas.value); i++) {
+						alert(primeraFila);
+						tabla.removeChild(primeraFila);
+					}
+				}
+			}
+
+
+		</script>
+	</head>
+	<body>
+		<div>
+			<table border="1"><tr><td>celda</td></tr></table>
+		</div>
+		<form>
+			<p>RELLENE SOLO UNA OPCION</p>
+			<label>celdas que quiero añadir</label>
+			<input type="text" size="2" id="anhadirCeldas"><br>
+			<label>celdas que quiero eliminar</label>
+			<input type="text" size="2" id="eliminarCeldas"><br>
+			<label>filas que quiero añadir</label>
+			<input type="text" size="2" id="anhadirFilas"><br>
+			<label>filas que quiero eliminar</label>
+			<input type="text" size="2" id="eliminarFilas"><br>
+			<input type="button" id="comprobar" value="comprobar">
+		</form>
+	</body>
+</html>

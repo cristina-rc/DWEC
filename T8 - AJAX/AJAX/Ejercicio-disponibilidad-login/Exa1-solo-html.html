@@ -1,0 +1,58 @@
+
+<html>
+<head>
+	
+	</head>
+	<body>
+		<form >
+			<table>
+				<tr>
+					<td>Nombre de usuario:</td>	
+					<td><input type="text" name="Nombre" id="caja"></td>	
+					<td><a href="#" id="enlace">Comprobar disponibilidad</a></td>	
+				</tr>
+			</table>
+		</form>
+		<script>
+			//mejora: textarea donde se vayan añadiendo los nicks disponibles
+
+			var xhr;
+			var caja;
+			var enlace;
+			var datos;
+
+			function enviarPeticionAJAX(evento) {
+				if (caja.value !=''){		
+					//COn formdata directamente ponemos la instancia del objeto formdata			
+					//datos = new FormData(document.forms[0]);
+					caja.disabled = true;			
+					// añade una nueva variable curso dentro de formdata para poder controlarla desde PHP			
+					// Se captura en PHP igual, con $_REQUEST['curso']
+					//datos.append('curso','20/21');
+					xhr = new XMLHttpRequest();
+					xhr.addEventListener('readystatechange', gestionarRespuesta, false);					
+					xhr.open('POST', 'ajax.php', true);
+					//Sólo es necesario en el caso del POST
+					xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+					xhr.send(null);
+				}				
+			}
+			function gestionarRespuesta(evento) {
+				if (evento.target.readyState == 4 && evento.target.status == 200) {
+					caja.disabled = false;
+					caja.value = evento.target.responseText;
+				}
+			}
+			document.addEventListener('readystatechange', inicializar, false);
+
+			function inicializar() {
+				if (document.readyState == 'complete') {
+					caja = document.getElementById('caja');
+					enlace = document.getElementById('enlace');
+					enlace.addEventListener('click', enviarPeticionAJAX, false);
+				}
+			}
+
+		</script>
+	</body>
+	</html>

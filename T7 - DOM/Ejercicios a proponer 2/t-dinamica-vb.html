@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>tabla dinámica</title>
+</head>
+<body>
+<script>
+var oTabla, oTBody, oFila, oCelda, oCelda2, oCelda3
+oTabla =document.createElement("TABLE")
+oTabla.border="1";
+oTBody =document.createElement("TBODY")
+oFila =document.createElement("TR")
+oCelda0 =document.createElement("TD")
+oCelda1=oCelda0.cloneNode() //Crea una nueva celda a partir de la anterior
+oCelda2=oCelda0.cloneNode() //Crea una nueva celda a partir de la anterior
+oCelda0.innerHTML="Celda 0"
+oCelda1.innerHTML="Celda 1"
+oCelda2.innerHTML="Celda 2"
+oFila.appendChild(oCelda0)
+oFila.appendChild(oCelda1)
+oFila.appendChild(oCelda2)
+oTBody.appendChild(oFila)
+oTabla.appendChild(oTBody)
+
+document.body.appendChild(oTabla)
+//document.appendChild(oTabla); Esto provova un error interesante.
+</script>
+</body>
+</html>

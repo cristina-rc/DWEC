@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.democlass {
+    color: red;
+}
+</style>
+</head>
+<body>
+<h1>Hola Mundo</h1>
+<p>Haz click sobre el botón para crear el atributo "class" de H1 y asignarle "democlass".</p>
+<button onclick="Invocalaf()">Inténtalo</button>
+<script>
+
+    function Invocalaf(){
+        atributo = document.createAttribute("class");
+        atributo.nodeValue = "democlass";
+
+        document.getElementsByTagName("h1")[0].attributes.setNamedItem(atributo);
+    }
+
+</script>
+</body></html>

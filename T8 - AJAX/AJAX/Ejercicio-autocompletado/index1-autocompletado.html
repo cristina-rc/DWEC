@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+    <div class="container">
+        <header class="text-center">
+            <h1>Segundo Ejercicio</h1>
+            <hr/>
+            <p class="lead">Autocompletado de un campo</p>
+        </header>
+        <div class="col-lg-6" style="margin-bottom:50px;">
+            <form class="form">
+                Buscar por nombre: <input name="buscador" id="buscador" type="text">
+            </form>
+            <br/>
+            <br/>
+            <b>Resultados</b>
+            <br/>
+            <br/>
+            <span id="resultado"></span>
+        </div>
+        <footer class="col-lg-12 text-center">
+            Examen 24 febrero 2020 DWEC
+        </footer>
+    </div>
+
+    <script>
+        var xhr;
+        var buscador;
+        var resultado;
+        var datos;
+
+        function enviarPeticionAJAX(evento) {
+            if (buscador.value !=''){		
+                //COn formdata directamente ponemos la instancia del objeto formdata			
+                //datos = new FormData(document.forms[0]);
+                buscador.disabled = true;			
+                // añade una nueva variable curso dentro de formdata para poder controlarla desde PHP			
+                // Se captura en PHP igual, con $_REQUEST['curso']
+                //datos.append('curso','20/21');
+                xhr = new XMLHttpRequest();
+                xhr.addEventListener('readystatechange', gestionarRespuesta, false);
+                xhr.open('GET', 'datos.php?buscador=' + buscador.value, true);
+                xhr.send(null);
+            }				
+        }
+        function gestionarRespuesta(evento) {
+            if (evento.target.readyState == 4 && evento.target.status == 200) {
+                buscador.disabled = false;
+                resultado.innerHTML = evento.target.responseText;
+            }
+        }
+        document.addEventListener('readystatechange', inicializar, false);
+
+        function inicializar() {
+            if (document.readyState == 'complete') {
+                buscador = document.getElementById('buscador');
+                resultado = document.querySelector('b');
+                buscador.addEventListener('input', enviarPeticionAJAX, false);
+            }
+        }
+	</script>
+	
+</body>
+
+</html>

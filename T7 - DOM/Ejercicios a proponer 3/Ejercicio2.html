@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        Nombre: <input type="text" id="nombre"><br>
+        Contraseña: <input type="password" id="clave"><br>
+        Mensajes servidor <br>
+        <textarea id="caja"></textarea>
+    </form>
+    <script>
+        const control1 = document.getElementById('nombre');
+        const control2 = document.getElementById('clave');
+
+        control1.addEventListener('keydown', imprimirEvento1, true);
+        control2.addEventListener('keydown', imprimirEvento2, true);
+
+        function imprimirEvento1(evento) {
+            if (evento.key == 'Enter') {
+                control2.focus();
+            }
+
+        }
+        function imprimirEvento2(evento) {
+            if (evento.key == 'Enter') {
+                document.getElementById('caja').value = "Iniciando Transmisión";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

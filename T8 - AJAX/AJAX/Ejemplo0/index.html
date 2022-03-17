@@ -1,0 +1,36 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <title>AJAX</title>
+ <style>
+ </style>
+ <script>
+ var xhr;
+ function enviarPeticionAJAX(evento){
+    //Para que no esté el usuario dando click todo el rato
+    evento.target.disabled=true;
+    xhr = new XMLHttpRequest();
+    xhr.addEventListener('readystatechange',gestionarRespuesta);
+    xhr.open('GET','ajax.php',true);
+    xhr.send(null);
+ }
+ 
+ function gestionarRespuesta(evento){
+    if(evento.target.readyState == 4 && evento.target.status == 200){
+    document.getElementById('encabezados').innerHTML =
+    evento.target.getAllResponseHeaders();
+    document.getElementById('contenido').innerHTML = evento.target.responseText;
+    //Habilitamos de nuevo el botón cuando ha finalizado el proceso, y tenemos la respuesta, para poder hacer otra consulta
+    document.getElementById('boton').disabled = false;
+    }
+ }
+ </script>
+ </head>
+ <body>
+ <button id='boton' type='button' onclick='enviarPeticionAJAX(event);'>ENVIAR PETICI&Oacute;N</button>
+ <h1>Encabezados respuesta</h1>
+ <div id='encabezados'></div>
+ <h1>Contenido respuesta</h1>
+ <div id='contenido'></div>
+ </body>
+ </html>

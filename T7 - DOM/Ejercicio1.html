@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Ejemplo uso Attributes</title>
+  <script type="text/javascript">   
+  </script>
+ </head>
+<body>
+ <p id="paragraph" style="color: green;">Párrafo sencillo</p>
+ <form action="">
+  <p>
+    <input type="button" value="Muestra el nombre y valor del primer attribute"
+      onclick="listAttributes();">
+    <input  id="result" type="text" size="50" maxlentgth="100" value="">
+  </p>
+ </form>
+
+ <script>
+    function listAttributes(){
+        var i;
+        var respuesta = '';
+        var atributos =
+        document.getElementById('paragraph').attributes;
+        for (i=0;i<atributos.length;i++){
+            respuesta += i+1 + "." + atributos[i].name + '=' +
+            atributos[i].value + ' ';
+        }
+        document.getElementById("result").value = respuesta;
+    }
+ </script>
+</body>
+</html>

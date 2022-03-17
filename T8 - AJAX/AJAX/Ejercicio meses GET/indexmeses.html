@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head><meta charset='UTF-8'/>
+		<title>AJAX</title>
+		<style>
+		</style>
+		<script>
+			var xhr;
+			var mes;
+			function enviarPeticionAJAX(evento) {
+				//Controlamos que ambos campos estén rellenos
+				if (document.readyState == 'complete') {
+					var mes = document.getElementById('num');
+					var boton = document.getElementById('boton');
+				}
+
+				if (mes.value !=''){
+					boton.disabled = true;
+					xhr = new XMLHttpRequest();
+					xhr.addEventListener('readystatechange', gestionarRespuesta, false);
+					xhr.open('GET', 'meses.php?num=' + mes.value, true);
+					xhr.send(null);
+				}				
+			}
+			function gestionarRespuesta(evento) {
+				if (evento.target.readyState == 4 && evento.target.status == 200) {
+					boton.disabled = false;
+					var presentacion = document.getElementById('presentacion');
+					presentacion.innerHTML = evento.target.responseText;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<label for='alumno'>Mes: </label>
+		<input type='text' id='num'/>
+
+		<button id='boton' type='button' onclick='enviarPeticionAJAX(event);'>ENVIAR PETICI&Oacute;N</button>
+
+		<div id = "presentacion"></div>
+	</body>
+</html>

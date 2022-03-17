@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creando tabla de colores</title>
+</head>
+<body>
+
+    <div id="contenedor"></div>
+
+    <script>
+      
+    function crearTabla(){
+        var tabla = document.createElement('table');
+        contenedor = document.getElementsByTagName('div')[0];
+        document.body.appendChild(tabla);
+
+        tabla.setAttribute("border", "2");
+        
+        for(let i=0; i<5; i++){
+            var fila = document.createElement('tr');
+            tabla.appendChild(fila);  
+
+            for(let j=0; j<5; j++){
+                var columna = document.createElement('td');
+                var texto = document.createTextNode("fila " + i + " columna " + j);
+                columna.appendChild(texto);
+                columna.style.width = "30px";
+                columna.style.height = "30px";
+                //añado la siguiente instrucción. inicializo background
+                columna.style.background="white";
+                columna.addEventListener('click', asignarColor, true);
+                fila.appendChild(columna);        
+            }
+        }
+    }  
+
+    function asignarColor(evento){         
+        var disparador = evento.target;
+        //El siguiente alert no mostraría valor alguno si no se inicializa el background al crear la celda.
+        //Con lo que no entraría en el then, sino que lo haría en el else. Es decir, como si inicializara esa propiedad.
+        //Compruébalo con la siguiente estructura. hace lo mismo que el ternario ? pero permite los alert.
+
+         /*if (evento.target.style.background == "white") {
+                alert("dentro then")
+                evento.target.style.background = "red";
+            }else{
+                alert("dentro else");
+                evento.target.style.background = "white";
+            }*/ 
+
+        disparador.style.backgroundColor == "white" ? (disparador.style.backgroundColor = "red") : (disparador.style.backgroundColor = "white");
+    }
+
+   // document.addEventListener('DOMContentLoaded', crearTabla, false);
+    document.addEventListener('DOMContentLoaded', crearTabla, false);
+
+    </script>
+</body>
+</html>

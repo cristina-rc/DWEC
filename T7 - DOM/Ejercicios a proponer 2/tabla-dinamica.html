@@ -1,0 +1,26 @@
+<HTML>
+<BODY ONLOAD="init()">
+<SCRIPT DEFER>
+function init() {
+  var tbl, tbody, tr, td, text, i, max;
+  max = 10;
+  var theDoc = document;
+  var theBody = theDoc.body;
+
+  tbl = theDoc.createElement("TABLE");
+  tbl.border = "1";
+  tbody = theDoc.createElement("TBODY");
+  tbl.insertBefore(tbody, null);
+  theBody.insertBefore(tbl, null);
+  for (i=0; i<max; i++) {
+     tr = theDoc.createElement("TR");
+     td = theDoc.createElement("TD");
+     text = theDoc.createTextNode("Text");
+     tbody.insertBefore(tr, null);
+     tr.insertBefore(td, null);
+     td.insertBefore(text, null);
+  }
+}
+</SCRIPT>
+</BODY>
+</HTML>

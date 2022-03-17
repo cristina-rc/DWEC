@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creando elemento y atributos</title>
+</head>
+<body>
+    <div id="contenedor"></div>
+    <script>
+
+        onload = function (){
+            div = document.getElementById('contenedor');
+            input = document.createElement('input');
+            input.setAttribute('type','text');
+            input.setAttribute('placeholder','Hola mundo');
+            div.appendChild(input);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<HTML>
+<head><meta charset="UTF-8">
+<TITLE>HTML HACIA XML CON XHR</TITLE>
+
+<body>
+
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+ <title>AJAX</title>
+ <style>
+ </style>
+ <script>
+ var xhr;
+ var fabricante;
+ var textarea;
+ var visualizar;
+ var datos;
+
+ function enviarPeticionAJAX(evento) {
+    if (fabricante.value !='' ){
+        visualizar.disabled = true;
+        textarea.value = '';
+        fabricante.selectedIndex = 0;
+        datos = new FormData(document.forms[0]);
+        xhr = new XMLHttpRequest();
+        xhr.addEventListener('readystatechange',gestionarRespuesta, false);
+        xhr.open('POST', 'cpus.xml', true);
+        xhr.send(null);
+    }else{
+        fabricante.value = '';
+        fabricante.selectedIndex = 0;
+        visualizar.disabled = true;
+    }
+ }
+
+ function gestionarRespuesta(evento) {
+    if (evento.target.readyState == 4 && evento.target.status == 200) {
+        fabricante.disabled = false;
+        visualizar.disabled = false;
+        datos = evento.target.responseXML;
+        actualizarFabricante();
+    }
+ }
+
+function actualizarFabricante(){
+    console.log(datos);
+    if (fabricante.value !=''){
+        var i;
+        var procesadores = datos.getElementsByTagName('procesador');
+       
+        for (i=0; i<procesadores.length; i++){
+            console.log(procesadores[i]);
+            if(procesadores[i].getAttribute('fabricante') == fabricante.value){
+                textarea.value += procesadores[i].getAttribute('modelo') + "\n";          
+            }
+        }
+    }
+}
+
+document.addEventListener('readystatechange', inicializar, false);
+
+function inicializar() {
+    if (document.readyState == 'complete') {
+        fabricante = document.getElementsByTagName('input')[0];
+        visualizar = document.getElementById('bton');
+        textarea = document.getElementById("modelos");
+        visualizar.addEventListener('click', enviarPeticionAJAX, false);    }
+}
+
+</script>
+
+<form name="form0">
+    <label>FABRICANTE DEL PROCESADOR</label><BR><input type="textbox" value=""><BR><BR>
+    <input type="button" id="bton" value="Visualizar"><BR><BR>
+    <textarea id="modelos" rows="20" cols="30"></textarea>
+</form>
+</body>
+</html>
+
+

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creando elemento y atributos</title>
+</head>
+<body>
+    <div id="contenedor"></div>
+    <script>
+        var container=document.getElementById("contenedor");
+        //Creando elemento y creando sus atributos
+        var entrada = document.createElement("input"),
+        tipo = document.createAttribute("type");
+        tipo.nodeValue = "text";
+        valor=document.createAttribute("value");
+        valor.nodeValue="HOLA MUNDO";
+        //De las cuatro líneas siguientes pueden valer: dos primeras o las dos siguientes.
+        //entrada.setAttributeNode(tipo);
+        //entrada.setAttributeNode(valor);
+        entrada.attributes.setNamedItem(tipo);
+        entrada.attributes.setNamedItem(valor);
+        //Añadiendo elemento
+        container.appendChild(entrada);
+        
+    </script>
+</body>
+</html>

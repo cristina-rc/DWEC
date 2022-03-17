@@ -1,0 +1,49 @@
+<html>
+<head>
+<script>
+
+var xhr;
+var presentacion;
+var boton;
+
+function enviarPeticionAJAX(evento) {
+	
+		boton.disabled = true;
+		xhr = new XMLHttpRequest();
+		//En cada cambio de valor de la propiedad readystatechange comprueba si puede gestionar la respuesta, y lo hará cuando el status sea 200
+		xhr.addEventListener('readystatechange', gestionarRespuesta, false);
+		xhr.open('GET', 'saludo.txt', true);
+		//No vamos a enviar nada al servidor
+		xhr.send(null);
+								
+}
+
+function gestionarRespuesta(evento) {
+	if (evento.target.readyState == 4 && evento.target.status == 200) {
+		
+		boton.disabled = false;
+		//Si la conexión con el archivo txt ha sido correcta, recogeremos su respuesta y la insertaremos en la presentación
+		presentacion.innerHTML = evento.target.responseText;
+	}
+}
+
+
+function inicializar(){
+	if (document.readyState == 'complete') {
+		presentacion = document.getElementById('capa');
+		boton = document.getElementById('cambiar');
+		boton.addEventListener('click', enviarPeticionAJAX, false);
+	
+	}
+}
+
+document.addEventListener('readystatechange',inicializar, false);
+</script>
+</head>
+<body>
+
+<div id="capa"><h2>Cambia el texto pulsando sobre el bot�n</h2></div>
+<button id="cambiar" type="button">Cambia contenido</button>
+
+</body>
+</html

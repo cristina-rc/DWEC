@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select</title>
+</head>
+<body>
+</body>
+
+<script>
+    
+    // Funcion para añadir una opcion con nombre $opcion a un select $select
+    function añadirOpcion(select,opcion) {
+        mioption = document.createElement('option');
+        texto = document.createTextNode(opcion);
+        mioption.appendChild(texto);
+        select.appendChild(mioption);
+    }
+
+    mibody = document.getElementsByTagName('body')[0];
+    miselect = document.createElement('select');
+
+    for (let i = 1; i <= 5; i++) {
+        añadirOpcion(miselect,'Opcion '+i);
+    }
+
+    mibody.appendChild(miselect);
+
+</script>
+</html>

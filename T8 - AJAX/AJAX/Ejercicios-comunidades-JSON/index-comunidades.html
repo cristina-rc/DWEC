@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AJAX</title>
+    <style></style>
+    <script>
+      var xhr;
+      var comunidad;
+      var objetoRespuesta;
+      var ciudades;
+      
+      function enviarPeticionAJAX(evento) {
+        if (comunidad.value != "") {
+            comunidad.disabled = true;
+            xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", gestionarRespuesta, false);
+            xhr.open("GET", "provincias.json", true);
+            xhr.send(null);
+
+        } else {
+          ciudades.value = "";
+        }
+      }
+
+      function gestionarRespuesta(evento) {
+        if (evento.target.readyState == 4 && evento.target.status == 200) {
+            comunidad.disabled = false;
+            objetoRespuesta = evento.target.responseText;
+
+            //Decodificamos el JSON de la respuesta
+            var datosJSON = JSON.parse(objetoRespuesta);       
+            var ciudades = datosJSON[comunidad.value];
+
+            if(document.getElementsByTagName("select")[1] != null){
+              //Se puede hacer document.getElementsByTagName("select")[1].remove();
+              document.body.removeChild(document.getElementsByTagName("select")[1]);
+            }
+            
+            var select = document.createElement('select');
+
+            for(let ciudad of ciudades){
+              var option = document.createElement('option');
+            
+              option.value = ciudad;
+              option.text = ciudad.charAt(0).toUpperCase() + ciudad.slice(1);
+
+              select.appendChild(option);          
+            }
+
+          document.body.appendChild(select);
+        }
+      }
+
+      function inicializar() {
+        if (document.readyState == "complete") {
+          comunidad = document.getElementById("comunidad");
+          comunidad.addEventListener("change", enviarPeticionAJAX, false);
+        }
+      }
+
+      document.addEventListener("readystatechange", inicializar, false);
+
+    </script>
+  </head>
+  <body>
+    <form id="formulario">
+      <label for="comunidad">Seleccione una comunidad</label>
+      <select id="comunidad" name="comunidad">
+        <option value="" selected="selected">--Elija una comunidad--</option>
+        <option value="andalucia">Andalucía</option>
+        <option value="aragon">Aragón</option>        
+        <option value="asturias">Principado de Asturias</option>
+        <option value="baleares">Illes Balears</option>
+        <option value="canarias">Canarias</option>
+        <option value="cantabria">Cantabria</option>
+        <option value="castilla y leon">Castilla y León</option>
+        <option value="castilla y la mancha">Castilla-La Mancha</option>
+        <option value="cataluña">Cataluña</option>
+        <option value="comunidad valenciana">Comunitat Valenciana</option>
+        <option value="extremadura">Extremadura</option>
+        <option value="galicia">Galicia</option>
+        <option value="madrid">Comunidad de Madrid</option>
+        <option value="murcia">Región de Murcia</option>
+        <option value="navarra">Comunidad Foral de Navarra</option>
+        <option value="pais vasco">País Vasco</option>
+        <option value="la rioja">La Rioja</option>
+        <option value="ceuta">Ceuta</option>
+        <option value="melilla">Melilla</option>
+      </select>
+    </form>
+  </body>
+  </html>

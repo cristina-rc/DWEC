@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function Obtenerhijos(el) {
+    var container = document.getElementById(el);
+    var childArray = container.children;//Solo devuelve HTMLxxxElements.
+    //var childArray = container.childNodes;(esto incluye nodos de tipo texto)
+	alert(childArray[0]);
+    var results = document.getElementById('resultados');
+    results.innerHTML = container.id+" tiene "+childArray.length+" hijos.<br />";
+    results.style.color="#00FF00";
+    for(var i = 0; i < childArray.length; i++){
+        results.innerHTML += childArray[i].id+"<br />";
+        childArray[i].style.color = "#F00";
+    }
+}
+</script>
+</head>
+<body>
+<div id="padre">
+  <p id="child1">Contenido del parrafo ...</p>
+  <p id="child2">Contenido del parrafo ...</p>
+  <p id="child3">Contenido del parrafo ...</p>
+</div>
+<button onclick="Obtenerhijos('padre');">Obtención de hijos</button>
+<div id="resultados"></div>
+</body>
+</html>
